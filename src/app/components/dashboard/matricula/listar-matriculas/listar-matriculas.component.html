@@ -1,0 +1,133 @@
+<mat-card class="container">
+  <div class="card-header">
+    <mat-card-header>
+      <mat-card-title>Lista de Matrículas</mat-card-title>
+    </mat-card-header>
+  </div>
+  <mat-card-content>
+    <br>
+
+
+
+    <div>
+      <button class="btnVolver" mat-raised-button *ngIf="mostra" (click)="generarReporte()">
+        Imprimir lista
+      </button>
+    </div>
+
+    <mat-form-field appearance="legacy">
+      <mat-label>Buscar por estado del curso</mat-label>
+      <mat-select name="estado" (selectionChange)="cargarInscripcionesCursos($event.value)">
+        <mat-option value="todos">Todos</mat-option>
+        <mat-option value="Inscripcion">Inscripcion</mat-option>
+        <mat-option value="Inicio">Inicio</mat-option>
+        <mat-option value="Finalizado">Finalizado</mat-option>
+      </mat-select>
+
+    </mat-form-field>
+    <mat-form-field style="width: 450px;" appearance="legacy">
+      <mat-label>Buscar por cursos</mat-label>
+      <mat-select (selectionChange)="cargarMatricula($event.value)">
+        <mat-option *ngFor="let x of listaCursos" [value]="x">
+          {{ x.catalogo.nombre }} {{x.fechaInicio}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Buscar por Cédula</mat-label>
+      <mat-icon matSuffix>search</mat-icon>
+      <input matInput (keyup)="filtrar($event)" autocomplete="off" #input />
+      <div id="example23_filter" class="dataTables_filter"></div>
+    </mat-form-field>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="lista" matSort>
+
+        <ng-container matColumnDef="fechaMatricula">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Fecha
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.fechaMatricula }}</td>
+        </ng-container>
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>Identificacion</th>
+          <td mat-cell *matCellDef="let element">{{ element.inscripcion.alumno.identificacion}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="alumno">
+          <th mat-header-cell *matHeaderCellDef>Alumno</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.inscripcion.alumno.nombrePrimer }}
+            {{ element.inscripcion.alumno.nombreSegundo }}
+            {{ element.inscripcion.alumno.apellidoPrimer }}
+            {{ element.inscripcion.alumno.apellidoSegundo }}
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="curso">
+          <th class="headers" mat-header-cell *matHeaderCellDef>Curso</th>
+          <td class="headers" mat-cell *matCellDef="let element">{{ element.inscripcion.curso.catalogo.nombre }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="paralelo">
+          <th class="headers" mat-header-cell *matHeaderCellDef>Paralelo</th>
+          <td class="headers" mat-cell *matCellDef="let element">
+            {{ element.paralelo.nombre }}
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="contrato">
+          <th mat-header-cell *matHeaderCellDef>Contrato</th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="!element.contrato">
+              <a class="btnContrato" mat-button color="accent"
+                [routerLink]="['/dashboard/crear-contrato', element.idMatricula]" data-toggle="tooltip"
+                matTooltip="Generar contrato">
+                <mat-icon aria-hidden="true" aria-label="Example home icon">
+                  history_edu</mat-icon>
+              </a></span>
+</td>
+</ng-container>
+
+
+
+
+        <ng-container style="width: 50px" matColumnDef="editar">
+          <th mat-header-cell *matHeaderCellDef>Editar</th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="!element.contrato">
+              <a mat-button color="primary" [routerLink]="['/dashboard/editar-matricula', element.idMatricula]"
+                data-toggle="tooltip" matTooltip="Editar">
+                <mat-icon aria-hidden="true" aria-label="Example home icon">mode_edit</mat-icon>
+              </a></span>
+          </td>
+        </ng-container>
+
+        <ng-container style="width: 50px" matColumnDef="eliminar">
+          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="!element.contrato">
+              <a mat-button color="warn" data-toggle="tooltip" (click)="eliminar(element)" matTooltip="Eliminar">
+                <mat-icon aria-hidden="true" aria-label="Example home icon">delete</mat-icon>
+              </a></span>
+          </td>
+        </ng-container>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="9999">No hay datos</td>
+        </tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent = $event" aria-label="Select page">
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<ng-container *ngIf="cargar">
+  <span class="loader"></span>
+</ng-container>

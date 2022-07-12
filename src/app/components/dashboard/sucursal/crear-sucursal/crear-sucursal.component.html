@@ -1,0 +1,94 @@
+<div class="main-content" *ngIf="cargar==false">
+  <div class="container-fluid">
+      <div class="col-md-8" style="margin: auto">
+        <div class="card text-center">
+          <div class="card-header">
+            <mat-card-header>
+              <mat-card-title>Formulario Sucursales</mat-card-title>
+            </mat-card-header>
+          </div>
+          <div class="card-body">
+  <form [formGroup]="form">
+
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input
+          matInput
+          autocomplete="off"
+          formControlName="nombre"
+          [(ngModel)]="lista.nombre"
+        />
+      </mat-form-field>
+        </div>
+
+        <div class="col">
+      <mat-form-field appearance="outline">
+        <mat-label>Ciudad</mat-label>
+        <input
+          matInput
+
+          formControlName="ubicacion"
+          [(ngModel)]="lista.ubicacion"
+        >
+      </mat-form-field>
+          </div>
+
+        <div class="col">
+      <mat-form-field appearance="outline">
+        <mat-label>Teléfono</mat-label>
+        <input
+          matInput
+          autocomplete="off"
+          formControlName="telefono"
+          [(ngModel)]="lista.telefono"
+        />
+      </mat-form-field>
+          </div>
+
+        <div class="col">
+      <mat-form-field appearance="outline">
+        <mat-label>Direccion</mat-label>
+        <input
+          matInput
+          autocomplete="off"
+          formControlName="direccion"
+          [(ngModel)]="lista.direccion"
+        />
+      </mat-form-field>
+          </div>
+
+      <mat-card-actions style="text-align: center">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="irLista()"
+          style="margin-right: 20px"
+        >
+          <mat-icon>reply</mat-icon> Volver
+        </button>
+        <button
+          type="submit"
+          [disabled]="form.invalid"
+          mat-raised-button
+          color="accent"
+          (click)="agregar()"
+        >
+          <mat-icon>save</mat-icon> Guardar
+        </button>
+      </mat-card-actions>
+      </div>
+    </mat-card-content>
+  </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<ng-container *ngIf="cargar">
+  <span class="loader"></span>
+</ng-container>
+

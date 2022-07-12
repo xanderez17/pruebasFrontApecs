@@ -1,0 +1,271 @@
+<div class="main-content" *ngIf="cargar==false">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-14">
+        <div class="card text-center">
+          <div class="card-header">
+            <h4 class="card-title">Formulario Inscripción</h4>
+          </div>
+          <div class="card-body">
+            <mat-card-subtitle>
+              <mat-label><strong>Curso: </strong></mat-label>
+              {{ listaCruso.catalogo.nombre }}<br />
+              <mat-label><strong>Valor Normal: </strong></mat-label>
+              {{ listaCruso.valorCurso }}<br />
+              <mat-label><strong>Reserva tu cupo con: </strong></mat-label>
+              {{ listaCruso.reserva }}<br />
+              <mat-label><strong>Valor Total con Descuento:</strong></mat-label>
+              {{ listaCruso.valorDescuento }}<br />
+              <mat-label><strong>Horarios Disponibles: </strong></mat-label>
+              <span *ngFor="let dias of listaCruso.dias"
+                >{{ dias.descripcion }}
+              </span>
+              <strong>Desde: </strong>
+              {{ listaCruso.horaInicio }}
+              <strong>Hasta: </strong>
+              {{ listaCruso.horaFin }}<br />
+              <mat-label><strong>Fecha Inicio: </strong></mat-label>
+              {{ listaCruso.fechaInicio }} <strong>Fin:</strong>
+              {{ listaCruso.fechaFin }}<br />
+            </mat-card-subtitle>
+
+            <mat-card-actions style="align-items: center">
+              <br>
+              <button
+                *ngIf="!existe"
+                mat-raised-button
+                color="accent"
+                matTooltip="Se ha inscrito antes "
+                (click)="existe = !existe"
+              >
+                Ya he realizado cursos
+              </button>
+              <button
+                *ngIf="existe"
+                mat-raised-button
+                color="accent"
+                matTooltip="No ha registrado cursos antes "
+                (click)="existe = !existe"
+              >
+                Soy nuevo estudiante
+              </button>
+            </mat-card-actions>
+            <mat-card-content *ngIf="existe">
+              <mat-card-content
+                ><br />
+                <form [formGroup]="form2" appearance="standard">
+                  <mat-form-field appearance="standard">
+                    <mat-label>Buscar alumno por cédula</mat-label>
+                    <mat-icon matSuffix>search</mat-icon>
+                    <input
+                      matInput
+                      (keyup)="filtrar($event)"
+                      maxlength="10"
+                      #input
+                    />
+                    <div id="example23_filter" class="dataTables_filter"></div>
+                  </mat-form-field>
+                  <div>
+                    <mat-label>
+                      {{ alumno.apellidoPrimer }} {{ alumno.apellidoSegundo }}
+                      {{ alumno.nombrePrimer }}
+                      {{ alumno.nombreSegundo }}</mat-label
+                    >
+                  </div>
+                </form>
+              </mat-card-content>
+              <mat-card-actions style="align-items: center">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  (click)="irLista()"
+                  style="margin-right: 20px"
+                >
+                  <mat-icon>reply</mat-icon>
+                  Volver
+                </button>
+                <button
+                  type="submit"
+                  [disabled]="form2.invalid"
+                  mat-raised-button
+                  color="accent"
+                  (click)="agregar2()"
+                >
+                  <mat-icon>save</mat-icon>
+                  Inscribirse
+                </button>
+              </mat-card-actions>
+            </mat-card-content>
+
+            <mat-card-content *ngIf="!existe">
+              <mat-card-content>
+                <form [formGroup]="form" appearance="standard">
+                  <mat-form-field style="width: 150px" appearance="legacy">
+                    <mat-label>Primer nombre</mat-label>
+                    <input
+                      matInput
+                      autocomplete="off"
+                      formControlName="primerNombre"
+                      [(ngModel)]="lista.nombrePrimer"
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field style="width: 150px" appearance="legacy">
+                    <mat-label>Segundo nombre</mat-label>
+                    <input
+                      matInput
+                      autocomplete="off"
+                      formControlName="segundoNombre"
+                      [(ngModel)]="lista.nombreSegundo"
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field style="width: 200px" appearance="legacy">
+                    <mat-label>Primer Apellido</mat-label>
+                    <input
+                      matInput
+                      autocomplete="off"
+                      formControlName="primerApellido"
+                      [(ngModel)]="lista.apellidoPrimer"
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field style="width: 200px" appearance="legacy">
+                    <mat-label>Segundo Apellido</mat-label>
+                    <input
+                      matInput
+                      autocomplete="off"
+                      formControlName="segundoApellido"
+                      [(ngModel)]="lista.apellidoSegundo"
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field style="width: 150px" appearance="legacy">
+                    <mat-label>Identificación</mat-label>
+                    <input
+                      matInput
+                      type="any"
+                      maxlength="10"
+                      autocomplete="off"
+                      formControlName="identificacion"
+                      [(ngModel)]="lista.identificacion"
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field style="width: 300px" appearance="legacy">
+                    <mat-label>Direccion</mat-label>
+                    <input
+                      matInput
+                      autocomplete="off"
+                      formControlName="direccion"
+                      [(ngModel)]="lista.direccion"
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field style="width: 200px" appearance="legacy">
+                    <mat-label>Correo</mat-label>
+                    <input
+                      matInput
+                      type="email"
+                      autocomplete="off"
+                      formControlName="correo"
+                      [(ngModel)]="lista.correo"
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field style="width: 160px" appearance="legacy">
+                    <mat-label>Fecha de Nacimiento</mat-label>
+                    <input
+                      matInput
+                      [matDatepicker]="myDatepicker1"
+                      autocomplete="off"
+                      placeholder="2/13/1993"
+                      formControlName="fechaNacimiento"
+                      [(ngModel)]="lista.fechaNacimiento"
+                    />
+                  </mat-form-field>
+                  <mat-datepicker-toggle
+                    [for]="myDatepicker1"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #myDatepicker1></mat-datepicker>
+
+                  <mat-form-field style="width: 160px" appearance="legacy">
+                    <mat-label>Teléfono</mat-label>
+                    <input
+                      matInput
+                      maxlength="10"
+                      autocomplete="off"
+                      formControlName="telefono"
+                      [(ngModel)]="lista.telefono"
+                    />
+                  </mat-form-field>
+                  <mat-radio-group
+                    style="width: 180px"
+                    formControlName="sexo"
+                    [(ngModel)]="lista.sexo"
+                  >
+                    <label
+                      >Sexo:
+                      <br />
+                      <mat-radio-button value="Masculino"
+                        >Masculino</mat-radio-button
+                      >
+                      <mat-radio-button value="Femenino"
+                        >Femenino</mat-radio-button
+                      >
+                    </label>
+                  </mat-radio-group>
+
+                  <mat-form-field appearance="legacy">
+                    <mat-label>Ocupacion</mat-label>
+                    <input
+                      matInput
+                      autocomplete="off"
+                      formControlName="ocupacion"
+                      [(ngModel)]="lista.ocupacion"
+                    />
+                  </mat-form-field>
+
+                  <mat-form-field appearance="legacy">
+                    <mat-label>Cargo</mat-label>
+                    <input
+                      matInput
+                      autocomplete="off"
+                      formControlName="cargo"
+                      [(ngModel)]="lista.cargo"
+                    />
+                  </mat-form-field>
+                </form>
+              </mat-card-content>
+              <mat-card-actions style="align-items: center">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  (click)="irLista()"
+                  style="margin-right: 20px"
+                >
+                  <mat-icon>reply</mat-icon>
+                  Volver
+                </button>
+                <button
+                  type="submit"
+                  [disabled]="form.invalid"
+                  mat-raised-button
+                  color="accent"
+                  (click)="agregar()"
+                >
+                  <mat-icon>save</mat-icon>
+                  Inscribirse
+                </button>
+              </mat-card-actions>
+            </mat-card-content>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="cargar">
+  <span class="loader"></span>
+</ng-container>

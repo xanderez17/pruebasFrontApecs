@@ -1,0 +1,28 @@
+
+<mat-toolbar *ngIf="ocultar" style="background-color: lightgray">
+  <mat-toolbar-row class="justify-content-between" >
+    <button mat-icon-button (click)="toggleSidebar()"><mat-icon>menu</mat-icon></button>
+    <div class="row mr-2 ml-auto">
+      <ul>
+        <li>
+          <button mat-button [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-items-center">
+            <img src="assets/recursos/user.png" class="user-image mr-1 p-2" style="width: 40px">
+            {{user}}
+            <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
+            <mat-menu #menu="matMenu" >
+              <button mat-menu-item *ngIf="isLogged" (click)="onLogOut()">
+                <mat-icon>exit_to_app</mat-icon>
+                Logout
+              </button>
+              <button *ngIf="!isLogged" routerLink="/login">
+                <mat-icon>account_circle</mat-icon>
+                Log In
+              </button>
+            </mat-menu>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+

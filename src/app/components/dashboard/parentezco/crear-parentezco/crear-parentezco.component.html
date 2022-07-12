@@ -1,0 +1,165 @@
+<mat-card>
+  <form [formGroup]="form" appearance="standard">
+    <mat-card-header>
+      <mat-card-title>Formulario Paretezco</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-card-content>
+        <mat-label><strong>Representante</strong><br /></mat-label>
+
+        <br />
+        <mat-form-field style="width: 300px" appearance="legacy">
+          <mat-label>Buscar representante por cédula</mat-label>
+          <input
+            matInput
+            (keyup)="filtrarRepre($event)"
+            autocomplete="off"
+            #input
+          />
+          <div id="example23_filter" class="dataTables_filter"></div>
+        </mat-form-field>
+        <br />
+        <mat-form-field style="width: 150px" appearance="legacy">
+          <mat-label>Identificacion</mat-label>
+          <input
+            matInput
+            autocomplete="off"
+            formControlName="repreId"
+            [(ngModel)]="lista.representante.identificacion"
+          />
+
+          {{ representante.identificacion }}
+        </mat-form-field>
+        <mat-form-field style="width: 150px" appearance="legacy">
+          <mat-label>Primer Apellido: </mat-label>
+          <input
+            matInput
+            autocomplete="off"
+            formControlName="repreApellido"
+            [(ngModel)]="lista.representante.apellidoPrimer"
+          />
+
+          {{ representante.apellidoPrimer }}
+        </mat-form-field>
+
+        <mat-form-field style="width: 150px" appearance="legacy">
+          <mat-label>Segundo Apellido: </mat-label>
+          <input
+            matInput
+            autocomplete="off"
+            formControlName="repreApellido2"
+            [(ngModel)]="lista.representante.apellidoSegundo"
+          />
+
+          {{ representante.apellidoPrimer }}
+        </mat-form-field>
+
+        <mat-form-field style="width: 150px" appearance="legacy">
+          <mat-label>Nombre: </mat-label>
+          <input
+            matInput
+            autocomplete="off"
+            formControlName="repreNombre"
+            [(ngModel)]="lista.representante.nombrePrimer"
+          />
+          {{ representante.nombrePrimer }}
+        </mat-form-field>
+        <br />
+        <mat-form-field style="width: 150px" appearance="legacy">
+          <mat-label>Paretezco</mat-label>
+          <mat-select
+            formControlName="parentezco"
+            [(ngModel)]="lista.relacionParentezco"
+          >
+            <mat-option value="1"> Abuelo</mat-option>
+            <mat-option value="2"> Abuela</mat-option>
+            <mat-option value="3"> Bisabuela</mat-option>
+            <mat-option value="4"> Bisabuelo</mat-option>
+            <mat-option value="5"> Cuñada</mat-option>
+            <mat-option value="6"> Cuñado</mat-option>
+            <mat-option value="7"> Hermanastra</mat-option>
+            <mat-option value="8"> Hermanastro </mat-option>
+            <mat-option value="9"> Hijastro</mat-option>
+            <mat-option value="10"> Hijastra</mat-option>
+            <mat-option value="11"> Madre</mat-option>
+            <mat-option value="12"> Madrastra</mat-option>
+            <mat-option value="13"> Nieto</mat-option>
+            <mat-option value="14"> Nieta</mat-option>
+            <mat-option value="15"> Nuera</mat-option>
+            <mat-option value="16"> Padre</mat-option>
+            <mat-option value="17"> Padrastro</mat-option>
+            <mat-option value="18"> Primo</mat-option>
+            <mat-option value="19"> Prima</mat-option>
+            <mat-option value="20"> Sobrino</mat-option>
+            <mat-option value="21"> Sobrina</mat-option>
+            <mat-option value="22"> Suegro</mat-option>
+            <mat-option value="23"> Suegra</mat-option>
+            <mat-option value="24"> Tío</mat-option>
+            <mat-option value="25"> Tía</mat-option>
+            <mat-option value="26"> Yerno</mat-option>
+            <mat-option value="27"> </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+
+      <mat-form-field style="width: 300px" appearance="legacy">
+        <mat-label>Buscar alumno por cédula</mat-label>
+        <input matInput (keyup)="filtrar($event)" autocomplete="off" #input />
+        <div id="example23_filter" class="dataTables_filter"></div>
+      </mat-form-field>
+<br>
+      <mat-form-field style="width: 150px" appearance="legacy">
+        <mat-label>Identificacion</mat-label>
+        <input
+          matInput
+          autocomplete="off"
+          formControlName="alumnoId"
+          [(ngModel)]="lista.alumno.identificacion"
+        />
+        {{ alumno.identificacion }}
+      </mat-form-field>
+
+      <mat-form-field style="width: 150px" appearance="legacy">
+        <mat-label>Primer Apellido</mat-label>
+        <input matInput autocomplete="off"  formControlName="alumnoApellido"
+        [(ngModel)]="lista.alumno.apellidoPrimer"/>
+        {{ alumno.apellidoPrimer }} 
+      </mat-form-field>
+      <mat-form-field style="width: 150px" appearance="legacy">
+        <mat-label>Segundo Apellido</mat-label>
+        <input matInput autocomplete="off"  formControlName="alumnoApellido2"
+        [(ngModel)]="lista.alumno.apellidoSegundo"/>
+       {{ alumno.apellidoSegundo }}
+      </mat-form-field>
+      <mat-form-field style="width: 150px" appearance="legacy">
+        <mat-label>Nombre</mat-label>
+        <input matInput autocomplete="off"  formControlName="alumnoNombre"
+        [(ngModel)]="lista.alumno.nombrePrimer"/>
+     
+        {{ alumno.nombrePrimer }} 
+      </mat-form-field>
+   
+      <br />
+    </mat-card-content>
+    <mat-card-actions style="text-align: center">
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="irLista()"
+        style="margin-right: 20px"
+      >
+        Volver
+      </button>
+      <button
+        type="submit"
+        [disabled]="form.invalid"
+        mat-raised-button
+        color="accent"
+        (click)="agregar()"
+      >
+        Guardar
+      </button>
+    </mat-card-actions>
+  </form>
+</mat-card>

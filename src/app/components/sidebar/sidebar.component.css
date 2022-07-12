@@ -1,0 +1,74 @@
+
+::ng-deep .mat-expansion-panel-header {
+  padding: 0 16px !important;
+  color: white !important;
+}
+
+
+::ng-deep .mat-nav-list .mat-icon {
+  margin-right: 10px;
+}
+
+/*Es cuando se expande la lista*/
+ .mat-expansion-panel-body::ng-deep {
+  height: 50px ;
+  padding: 0 !important;
+
+}
+
+
+.mat-expansion-panel-header::ng-deep  {
+  height: 50px !important;
+  background-color: #0e375d;
+}
+
+/*Listas x items*/
+.mat-expansion-panel .mat-list-item::ng-deep {
+  padding-left: 15px !important;
+  color: white;
+  height: 35px;
+
+}
+
+.mat-nav-list .is-active::ng-deep  {
+  background-color: #1abc9c;
+  border-radius: 3px;
+
+}
+
+.logo{
+  margin: auto;
+  padding: 5px 0 0 40px;
+  width: 220px;
+  height: auto;
+}
+
+.mat-divider {
+  border-top-width: 2px;
+  border-color: white;
+}
+
+::ng-deep .mat-list-base {
+  padding-top: 0 !important;
+}
+
+::ng-deep .mat-nav-list .mat-list-item.is-active .mat-list-item-content {
+  padding: 0 8px;
+}
+
+mat-expansion-panel{
+  background-color: #0e375d;
+}
+
+h2{
+  font-family: "Serif";
+}
+
+.texto{
+  text-align: center;
+  color: white;
+  background-color: #1abc9c;
+
+}
+
+

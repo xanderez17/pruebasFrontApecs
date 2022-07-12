@@ -1,0 +1,8 @@
+.col{
+  width: min-content;
+}
+
+.mat-card-actions{
+  text-align: center;
+  padding: 30px 0px 0px 0px;
+}

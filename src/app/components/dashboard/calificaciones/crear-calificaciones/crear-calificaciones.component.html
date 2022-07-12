@@ -1,0 +1,150 @@
+
+<mat-card class="container">
+  <form [formGroup]="form">
+    <div class="card-header">
+      <mat-card-header>
+        <mat-card-title>Formulario Registro Calificaciones</mat-card-title>
+      </mat-card-header>
+    </div>
+    <mat-card-content>
+
+      <mat-form-field style="width: 400px" appearance="legacy">
+        <mat-label>Alumno</mat-label>
+        <mat-select formControlName="alumno" [(ngModel)]="lista.alumno" [compareWith]="compareAlumno">
+          <mat-option *ngFor="let x of listaAlumno" [value]="x">
+            {{ x.apellidoPrimer }} {{ x.apellidoSegundo }} {{ x.nombrePrimer }}
+            {{ x.nombreSegundo }}
+          </mat-option>
+        </mat-select>
+
+      </mat-form-field>
+      <mat-form-field style="width: 130px" appearance="legacy">
+        <mat-label>Asistencia</mat-label>
+        <input matInput autocomplete="off" min="1" formControlName="asistencia" [(ngModel)]="lista.asistencia" />
+      </mat-form-field>
+      <mat-form-field style="width: 130px" appearance="legacy">
+        <mat-label>Tareas en clase</mat-label>
+        <input matInput autocomplete="off" min="1" formControlName="tareas" [(ngModel)]="lista.tareas" />
+      </mat-form-field>
+
+      <mat-form-field style="width: 130px" appearance="legacy">
+        <mat-label>Trabajos</mat-label>
+        <input matInput autocomplete="off" min="1" formControlName="trabajos" [(ngModel)]="lista.trabajos" />
+      </mat-form-field>
+      <mat-form-field style="width: 130px" appearance="legacy">
+        <mat-label>Exámen</mat-label>
+        <input matInput autocomplete="off" min="1" formControlName="examen" [(ngModel)]="lista.examen" />
+      </mat-form-field><br>
+
+    </mat-card-content>
+    <mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button class="btnVol" (click)="irLista()" style="margin-right: 20px">
+          <mat-icon>reply</mat-icon>
+          Volver
+        </button>
+        <button mat-raised-button class="btnClean" color="primary" (click)="reset()" style="margin-right: 20px">
+          <mat-icon>cleaning_services</mat-icon>
+          Limpiar
+        </button>
+        <button type="submit" [disabled]="form.invalid" mat-raised-button color="accent" (click)="agregar()">
+          <mat-icon>save</mat-icon>
+          Guardar
+        </button>
+        <button mat-raised-button class="btnReporte" color="primary" (click)="generarReporteGeneral()">
+          <mat-icon>description</mat-icon>
+          Reporte
+        </button>
+      </mat-card-actions>
+    </mat-card-content>
+  </form>
+
+  <table mat-table [dataSource]="listaCalificaciones" matSort class="mat-elevation-z8" *ngIf="cargar==false">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Identificacion</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.alumno.identificacion }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="alumno">
+      <th mat-header-cell *matHeaderCellDef>Alumno</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.alumno.apellidoPrimer }} {{ element.alumno.apellidoSegundo }} {{ element.alumno.nombrePrimer }} {{
+        element.alumno.nombreSegundo }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="asistencia">
+      <th mat-header-cell *matHeaderCellDef>Asistencia</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.asistencia}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="tareas">
+      <th mat-header-cell *matHeaderCellDef>Tareas</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.tareas}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="trabajos">
+      <th mat-header-cell *matHeaderCellDef>Trabajos</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.trabajos}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="examen">
+      <th mat-header-cell *matHeaderCellDef>Examen</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.examen }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="promedio">
+      <th mat-header-cell *matHeaderCellDef>Promedio</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.promedio }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="reporte">
+      <th mat-header-cell *matHeaderCellDef>Reporte</th>
+      <td mat-cell *matCellDef="let element">
+        <a  mat-button color="primary" (click)="openDialogVerReporte(element.idCalificacion)" data-toggle="tooltip"
+            matTooltip="Reporte">
+          <mat-icon aria-hidden="true" aria-label="Example home icon">description</mat-icon>
+        </a>
+      </td>
+    </ng-container>
+
+
+
+    <ng-container matColumnDef="editar">
+      <th mat-header-cell *matHeaderCellDef>Editar</th>
+      <td mat-cell *matCellDef="let element">
+        <a  mat-button color="primary" (click)="cargarId(element.idCalificacion)" data-toggle="tooltip"
+          matTooltip="Editar">
+          <mat-icon aria-hidden="true" aria-label="Example home icon">mode_edit</mat-icon>
+        </a>
+      </td>
+    </ng-container>
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="9999">No hay datos</td>
+    </tr>
+    <ng-container matColumnDef="eliminar">
+      <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+      <td mat-cell *matCellDef="let element">
+        <a  mat-button color="warn" data-toggle="tooltip" (click)="eliminar(element)" matTooltip="Eliminar">
+          <mat-icon aria-hidden="true" aria-label="Example home icon">delete</mat-icon>
+        </a>
+      </td>
+    </ng-container>
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="9999">No hay datos</td>
+    </tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+</mat-card>
+
+<ng-container *ngIf="cargar">
+  <span class="loader"></span>
+</ng-container>

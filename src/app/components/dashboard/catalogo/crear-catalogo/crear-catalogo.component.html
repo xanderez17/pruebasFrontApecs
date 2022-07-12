@@ -1,0 +1,66 @@
+<mat-card class="container" *ngIf="cargar==false">
+  <form [formGroup]="form">
+    <div class="card-header">
+    <mat-card-header>
+      <mat-card-title>Formulario Catálogo</mat-card-title>
+    </mat-card-header>
+    </div>
+    <div class="content">
+      <mat-form-field style="width: 360px" appearance="legacy">
+        <mat-label>Nombre</mat-label>
+        <input matInput autocomplete="off" formControlName="nombre" [(ngModel)]="lista.nombre" />
+      </mat-form-field>
+
+      <mat-form-field style="width: 80px" appearance="legacy">
+        <mat-label>Duración</mat-label>
+        <input matInput type="number" min="1" autocomplete="off" formControlName="duracion"
+          [(ngModel)]="lista.duracion" />
+      </mat-form-field>
+
+
+      <mat-form-field style="width: 450px" appearance="legacy">
+        <mat-label>Descripción</mat-label>
+        <textarea matInput rows="5" autocomplete="off" formControlName="descripcion"
+          [(ngModel)]="lista.descripcion"></textarea>
+      </mat-form-field>
+
+      <div class="row">
+        <div class="col">
+          <div>
+            <label for="inputFile">Portada
+              <mat-icon>image</mat-icon>
+              <br />
+              <img  *ngIf="cuadro" style="float: right" src="{{ lista.img }}" alt="" />
+            </label>
+
+            <input hidden id="inputFile" type="file" formControlName="img" accept=".png, .jpg, .jpeg"
+              value="{this.state.image}" (change)="cargarImg($event)" />
+          </div>
+        </div>
+
+        <div class="col">
+          <label for="inputFile2">
+            <mat-icon>picture_as_pdf</mat-icon>Documento<br />
+            <iframe *ngIf="cuadro" [src]="lista.pdf | safe"></iframe>
+          </label>
+          <input hidden id="inputFile2" type="file" formControlName="pdf" accept=".pdf" (change)="cargarPDF($event)" />
+        </div>
+      </div>
+      <br />
+      <mat-card-actions style="align-items: center">
+        <button mat-raised-button color="primary" (click)="irLista()" style="margin-right: 20px">
+          <mat-icon>reply</mat-icon>
+          Volver
+        </button>
+        <button type="submit" [disabled]="form.invalid" mat-raised-button color="accent" (click)="agregar()">
+          <mat-icon>save</mat-icon>
+          Guardar
+        </button>
+      </mat-card-actions>
+  </div>
+  </form>
+</mat-card>
+
+<ng-container *ngIf="cargar">
+  <span class="loader"></span>
+</ng-container>

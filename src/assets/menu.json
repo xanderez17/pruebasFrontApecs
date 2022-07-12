@@ -1,0 +1,193 @@
+[
+  {
+    "text": "Gestión de Usuarios",
+    "icon": "manage_accounts",
+    "children": [
+      {
+        "text": "Listar Usuarios",
+        "icon": "add_location",
+        "routerLink": "/dashboard/listar-usuarios"
+      },
+      {
+        "text": "Registrar Usuario",
+        "icon": "style",
+        "routerLink": "/dashboard/registrar-usuarios"
+      }
+    ]
+  },
+  {
+    "text": "Gestión de Catálogos",
+    "icon": "auto_stories",
+    "children": [
+      {
+        "text": "Crear Catálogos",
+        "icon": "note_add",
+        "routerLink": "/dashboard/crear-catalogo"
+      },
+      {
+        "text": "Ver Catálogos",
+        "icon": "style",
+        "routerLink": "/dashboard/listar-catalogos"
+      }
+    ]
+  },
+  {
+    "text": "Gestión de Cursos",
+    "icon": "groups_2",
+    "children": [
+
+      {
+        "text": "Cursos Actuales",
+        "icon": "summarize",
+        "routerLink": "/dashboard/listar-cursos-actuales"
+      },
+      {
+        "text": "Cursos Finalizados",
+        "icon": "summarize",
+        "routerLink": "/dashboard/listar-cursos-finalizados"
+      },
+      {
+        "text": "Todos los Cursos",
+        "icon": "summarize",
+        "routerLink": "/dashboard/listar-cursos"
+      },
+      {
+        "text": "Ver Categorias",
+        "icon": "summarize",
+        "routerLink": "/dashboard/listar-categorias"
+      }
+    ]
+  },
+  {
+    "text": "Inscripcion - Matricula",
+    "icon": "description",
+    "children": [
+      {
+        "text": "Crear Inscripción",
+        "icon": "bookmark_add",
+        "routerLink": "/dashboard/crear-inscripcion"
+      },
+      {
+        "text": "Inscripciones Actules",
+        "icon": "style",
+        "routerLink": "/dashboard/listar-inscripciones-actuales"
+      },
+      {
+        "text": "Todas las Inscripciones",
+        "icon": "style",
+        "routerLink": "/dashboard/listar-inscripciones"
+      },
+      {
+        "text": "Ver Matrícula",
+        "icon": "style",
+        "routerLink": "/dashboard/listar-matriculas"
+      }
+    ]
+  },
+  {
+    "text": "Paralelos",
+    "icon": "text_rotation_none",
+    "children": [
+      {
+        "text": "Crear Paralelos",
+        "icon": "add_business",
+        "routerLink": "/dashboard/crear-paralelo"
+      },
+      {
+        "text": "Ver Paralelos",
+        "icon": "visibility",
+        "routerLink": "/dashboard/listar-paralelos"
+      }
+    ]
+  },
+
+  {
+    "text": "Gestión de Contratos",
+    "icon": "content_copy",
+    "children": [
+      {
+        "text": "Ver Matriculas",
+        "icon": "file_copy",
+        "routerLink": "/dashboard/listar-matriculas"
+      },
+      {
+        "text": "Ver Contratos",
+        "icon": "request_page",
+        "routerLink": "/dashboard/listar-contratos"
+      }
+    ]
+  },
+  {
+    "text": "Gestión de Personas",
+    "icon": "people",
+    "children": [
+      {
+        "text": "Crear Alumnos",
+        "icon": "group_add",
+        "routerLink": "/dashboard/crear-alumno"
+      },
+      {
+        "text": "Ver Alumnos",
+        "icon": "format_list_numbered",
+        "routerLink": "/dashboard/listar-alumnos"
+      },
+      {
+        "text": "Crear Docente",
+        "icon": "school",
+        "routerLink": "/dashboard/crear-docente"
+      },
+      {
+        "text": "Ver Docente",
+        "icon": "format_list_numbered",
+        "routerLink": "/dashboard/listar-docentes"
+      },
+      {
+        "text": "Crear Representante",
+        "icon": "person_add",
+        "routerLink": "/dashboard/crear-representante"
+      },
+      {
+        "text": "Ver Representante",
+        "icon": "format_list_numbered",
+        "routerLink": "/dashboard/listar-representantes"
+      }
+    ]
+  },
+  {
+    "text": "Gestión de Casa",
+    "icon": "home_work",
+    "children": [
+      {
+        "text": "Crear Sucursales",
+        "icon": "add_location",
+        "routerLink": "/dashboard/crear-sucursal"
+      },
+      {
+        "text": "Ver Sucursales",
+        "icon": "visibility",
+        "routerLink": "/dashboard/listar-sucursales"
+      },
+      {
+        "text": "Crear Aulas",
+        "icon": "add_home",
+        "routerLink": "/dashboard/crear-aula"
+      },
+      {
+        "text": "Ver Aulas",
+        "icon": "visibility",
+        "routerLink": "/dashboard/listar-aulas"
+      }
+    ]
+  },
+  {
+    "text": "Gestión de Docentes",
+    "icon": "home_work",
+    "children": [
+      {
+        "text": "Ver Cursos",
+        "icon": "add_location",
+        "routerLink": "/dashboard/cursos-docente"
+      }
+    ]
+  }
+]

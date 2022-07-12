@@ -1,0 +1,53 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-14">
+        <div class="card text-center">
+          <div class="card-header">
+            <h4 class="card-title">Ver Matrícula</h4>
+          </div>
+          <div class="card-body">
+
+            <mat-card-content>
+              <mat-label><strong>Matrícula Nº</strong>
+                {{ lista.idMatricula }}</mat-label>
+              <br />
+
+              <mat-label><strong>Fecha Matrícula</strong>
+                {{ lista.fechaMatricula | date: "dd/MM/yyyy" }}</mat-label>
+
+              <br />
+
+
+              <mat-label>Apellidos:
+
+                {{ lista.inscripcion.alumno.apellidoPrimer }}
+                {{ lista.inscripcion.alumno.apellidoSegundo }}
+                {{ lista.inscripcion.alumno.nombrePrimer }}
+                {{ lista.inscripcion.alumno.nombreSegundo }}
+              </mat-label>
+              <br />
+
+              <mat-label>Curso:
+
+                {{ lista.inscripcion.curso.catalogo.nombre }}
+              </mat-label>
+              <br>
+              <mat-label>Paralelo: {{ lista.paralelo.nombre }}</mat-label>
+
+
+              <br />
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button color="primary" (click)="irLista()" style="margin-right: 20px">
+                <mat-icon>reply</mat-icon> Volver
+              </button>
+
+            </mat-card-actions>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+
+<mat-drawer-container>
+  <mat-drawer #drawer mode="side" [opened]="sideBarOpen" *ngIf="ocultar">
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-header (toggleSidebarForMe)="sideBarToggler()"></app-header>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+

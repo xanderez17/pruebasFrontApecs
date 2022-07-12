@@ -1,0 +1,35 @@
+<div class="body">
+  <div class="login">
+
+    <form #f="ngForm" novalidate>
+      <img src="assets/recursos/logoApces.jpeg" width="50%">
+      <h1>Login</h1>
+      <mat-form-field class="ancho" appearance="fill">
+        <mat-icon matSuffix>person_outline</mat-icon>
+        <mat-label>Usuario</mat-label>
+        <input matInput autocomplete="off" type="text" name="username" id="username"
+               [(ngModel)]="username" required>
+      </mat-form-field>
+
+
+      <div class="example-container">
+        <mat-form-field class="ancho" appearance="fill">
+          <mat-label>Ingrese su Contraseña</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" name="password" [(ngModel)]="password" required>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+      </div>
+
+
+
+      <br>
+      <button type="submit" class="ancho button" mat-raised-button color="primary" (click)="onLogin()" [disabled]="!f.valid">Ingresar</button>
+    </form>
+    <div *ngIf="f.submitted && isLoginFail" class="alert alert-danger mt-3">Fallo en el Login: {{errMsj}}</div>
+  </div>
+</div>
+
+  <mat-spinner *ngIf="fake" class="spinner" diameter="50"></mat-spinner>

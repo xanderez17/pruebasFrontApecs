@@ -1,0 +1,74 @@
+<mat-card class="container" *ngIf="cargar==false">
+  <form [formGroup]="form">
+    <div class="card-header">
+      <mat-card-header>
+        <mat-card-title>Formulario Inscripción</mat-card-title>
+      </mat-card-header>
+    </div>
+
+
+
+      <mat-card-content>
+        <br>
+        <mat-label><strong>Fecha Inscripción:</strong>
+          {{ fecha | date: "dd/MM/yyyy" }}</mat-label>
+
+        <br>
+        <mat-form-field appearance="legacy">
+          <mat-label>Buscar por estado del curso</mat-label>
+          <mat-select name="estado" (selectionChange)="cargarCursos($event.value)">
+
+            <mat-option value="Inscripcion">Inscripcion</mat-option>
+            <mat-option value="Inicio">Inicio</mat-option>
+            <mat-option value="todos">Todos</mat-option>
+          </mat-select>
+
+        </mat-form-field>
+        <mat-form-field style="width: 450px;" appearance="legacy">
+          <mat-label>Buscar por cursos</mat-label>
+          <mat-select formControlName="curso" [compareWith]="compareCurso"   [(ngModel)]="lista.curso" >
+            <mat-option *ngFor="let x of cursos" [value]="x">
+              {{ x.catalogo.nombre }} {{x.fechaInicio}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-content>
+        <mat-form-field appearance="standard">
+          <mat-label>Buscar Cédula</mat-label>
+          <mat-icon matSuffix>search</mat-icon>
+          <input matInput formControlName="alumno" (keyup)="filtrar($event)" autocomplete="off"  />
+          <div id="example23_filter" class="dataTables_filter"></div>
+        </mat-form-field>
+
+        <mat-label><strong>Alumno: </strong>
+          <span *ngIf ="mostrarLista">
+          {{ lista.alumno.apellidoPrimer }}
+          {{ lista.alumno.apellidoSegundo }}
+           {{ lista.alumno.nombrePrimer }}
+          {{ lista.alumno.nombreSegundo }}</span>
+          <span *ngIf ="mostrar">
+          {{ alumno.apellidoPrimer }}
+          {{ alumno.apellidoSegundo }}
+          {{ alumno.nombrePrimer }}
+          {{ alumno.nombreSegundo }}</span></mat-label>
+
+
+        <mat-card-actions>
+          <div style="text-align: center">
+            <button mat-raised-button color="primary" (click)="irLista()" style="color: white">
+              <mat-icon>reply</mat-icon> Volver
+            </button>
+            <button type="submit" [disabled]="form.invalid" mat-raised-button color="accent" (click)="agregar()">
+              <mat-icon>save</mat-icon> Guardar
+            </button>
+          </div>
+        </mat-card-actions>
+      </mat-card-content>
+
+  </form>
+</mat-card>
+
+<ng-container *ngIf="cargar">
+  <span class="loader"></span>
+</ng-container>

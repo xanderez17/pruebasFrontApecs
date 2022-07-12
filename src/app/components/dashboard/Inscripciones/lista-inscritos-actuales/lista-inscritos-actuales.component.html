@@ -1,0 +1,120 @@
+<mat-card class="container">
+  <div class="card-header">
+    <mat-card-header>
+      <mat-card-title>Lista de Inscripciones</mat-card-title>
+    </mat-card-header>
+  </div>
+  <br />
+  <mat-card-content>
+
+    <button mat-raised-button style="float: right" color="accent" routerLink="/dashboard/crear-inscripcion">
+      Nueva Inscripción<mat-icon>add</mat-icon>
+    </button>
+
+
+
+    <mat-form-field appearance="standard">
+      <mat-label>Buscar Cédula</mat-label>
+      <mat-icon matSuffix>search</mat-icon>
+      <input matInput (keyup)="filtrar($event)" autocomplete="off" #input />
+      <div id="example23_filter" class="dataTables_filter"></div>
+    </mat-form-field>
+    <mat-form-field style="width: 450px;" appearance="legacy">
+      <mat-label>Buscar por cursos</mat-label>
+      <mat-select (selectionChange)="cargarInscripcion($event.value)">
+        <mat-option *ngFor="let x of listaCursos" [value]="x">
+          {{ x.catalogo.nombre }} {{x.fechaInicio}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="mat-elevation-z8" *ngIf="cargar==false">
+      <table mat-table [dataSource]="lista" matSort>
+        <ng-container matColumnDef="fecha">
+          <th class="headers"mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</th>
+          <td class="headers" mat-cell *matCellDef="let element">
+            {{ element.fechaInscripcion }}
+          </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="cedula">
+          <th class="headers" mat-header-cell *matHeaderCellDef>Cédula</th>
+          <td class="headers" mat-cell *matCellDef="let element">
+            {{ element.alumno.identificacion }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="alumno">
+          <th mat-header-cell *matHeaderCellDef>Alumno</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.alumno.apellidoPrimer }}
+            {{ element.alumno.apellidoSegundo }}
+            {{ element.alumno.nombrePrimer }} {{ element.alumno.nombreSegundo }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="curso">
+          <th mat-header-cell *matHeaderCellDef>Curso</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.curso.catalogo.nombre }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="matricula">
+          <th mat-header-cell *matHeaderCellDef>Matrícula</th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="!element.matricula">
+              <a class="mr-2" mat-button color="accent" data-toggle="tooltip" matTooltip="Matricular"
+                (click)="openDialogMatricular(element.idInscripcion)">
+                <mat-icon aria-hidden="true" aria-label="Example home icon">edit_document
+                </mat-icon>
+              </a>
+            </span>
+            <span *ngIf="element.matricula">
+              <a class="mr-2" mat-button color="primary" data-toggle="tooltip" matTooltip="Ver Matrícula"
+                (click)="openDialogVerMatricula(element.idInscripcion)">
+                <mat-icon class="btnVer" aria-hidden="true" aria-label="Example home icon">visibility
+                </mat-icon>
+              </a>
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="editar">
+          <th mat-header-cell *matHeaderCellDef>Editar</th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="!element.matricula"> <a class="mr-2" mat-button color="primary" [routerLink]="[
+                '/dashboard/editar-inscripcion',
+                element.idInscripcion
+              ]" data-toggle="tooltip" matTooltip="Editar">
+                <mat-icon aria-hidden="true" aria-label="Example home icon">mode_edit</mat-icon>
+              </a></span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="eliminar">
+          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngIf="!element.matricula"
+              >
+            <a class="mr-2" mat-button color="warn" data-toggle="tooltip" (click)="eliminar(element)"
+              matTooltip="Eliminar">
+              <mat-icon aria-hidden="true" aria-label="Example home icon">delete</mat-icon>
+            </a></span>
+          </td>
+        </ng-container>
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="9999">No hay datos</td>
+        </tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent = $event" aria-label="Select page">
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<ng-container *ngIf="cargar">
+  <span class="loader"></span>
+</ng-container>

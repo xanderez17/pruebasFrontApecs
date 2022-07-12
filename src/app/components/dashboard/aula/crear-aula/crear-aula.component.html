@@ -1,0 +1,94 @@
+<div class="main-content" *ngIf="cargar==false">
+  <div class="container-fluid">
+      <div class="col-md-8" style="margin: auto">
+        <div class="card text-center">
+          <div class="card-header">
+            <h4 class="card-title">Formulario Aula</h4>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="form">
+              <mat-card-content>
+                <div class="row">
+                  <div class="col">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input
+                      matInput
+                      autocomplete="off"
+                      formControlName="nombre"
+                      [(ngModel)]="lista.nombre"
+                    />
+                  </mat-form-field>
+                  </div>
+
+                  <div class="col">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Capacidad</mat-label>
+                      <input
+                        matInput
+                        autocomplete="off"
+                        type="number"
+                        min="1"
+                        formControlName="capacidad"
+                        [(ngModel)]="lista.capacidad"
+                      />
+                    </mat-form-field>
+                    </div>
+
+                  <div class="col">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Modalidad</mat-label>
+                      <mat-select formControlName="modalidad" [(ngModel)]="lista.modalidad">
+                        <mat-option value="Presencial">Presencial</mat-option>
+                        <mat-option value="Virtual">Virtual</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    </div>
+
+                  <div class="col">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Sucursal</mat-label>
+                      <mat-select
+                        formControlName="sucursal"
+                        [(ngModel)]="lista.sucursal"
+                        [compareWith]="compareSucursal"
+                      >
+                        <mat-option *ngFor="let x of listaSucursales" [value]="x">
+                          {{ x.nombre }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    </div>
+                </div>
+              </mat-card-content>
+              <mat-card-actions style="text-align: center">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  (click)="irLista()"
+                  style="margin-right: 20px"
+                >
+                  <mat-icon>reply</mat-icon>
+                  Volver
+                </button>
+                <button
+                  type="submit"
+                  [disabled]="form.invalid"
+                  mat-raised-button
+                  color="accent"
+                  (click)="agregar()"
+                >
+                  <mat-icon>save</mat-icon>
+                  Guardar
+                </button>
+              </mat-card-actions>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<ng-container *ngIf="cargar">
+  <span class="loader"></span>
+</ng-container>

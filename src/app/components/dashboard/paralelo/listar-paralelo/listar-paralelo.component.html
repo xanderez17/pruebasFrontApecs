@@ -1,0 +1,90 @@
+<mat-card class="container">
+  <div class="card-header">
+    <mat-card-header>
+      <mat-card-title>Lista de Paralelos</mat-card-title>
+    </mat-card-header>
+  </div>
+  <mat-card-content>
+    <mat-form-field appearance="legacy">
+      <mat-label>Buscar por estado</mat-label>
+      <mat-select name="estado" (selectionChange)="cargarParalelos($event.value)">
+        <mat-option value="enCurso">En curso</mat-option>
+        <mat-option value="finalizado">Finalizado</mat-option>
+        <mat-option value="todos">Todos</mat-option>
+      </mat-select>
+    </mat-form-field>
+      <mat-form-field appearance="standard">
+        <mat-label>Buscar por nombre</mat-label>
+        <mat-icon matSuffix>search</mat-icon>
+        <input matInput (keyup)="filtrar($event)" autocomplete="off" #input />
+            </mat-form-field>
+
+      <button mat-raised-button style="float: right;" color="accent" routerLink="/dashboard/crear-paralelo"
+     >
+        Nuevo paralelo<mat-icon>add</mat-icon>
+      </button>
+
+    <div class="mat-elevation-z8" *ngIf="cargar==false">
+      <table mat-table [dataSource]="lista" matSort>
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+          <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+        </ng-container>
+        <ng-container matColumnDef="curso">
+          <th class="headers" mat-header-cell *matHeaderCellDef>Nombre del Curso</th>
+          <td class="headers" mat-cell *matCellDef="let element">{{ element.curso.catalogo.nombre }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="aula">
+          <th class="headers" mat-header-cell *matHeaderCellDef >Aula</th>
+          <td class="headers" mat-cell *matCellDef="let element">{{ element.aula.nombre }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="alumnos">
+          <th mat-header-cell *matHeaderCellDef>Alumnos Asignados</th>
+          <td mat-cell *matCellDef="let element">
+            {{ cargarNumeroAlumno(element) }} {{numAlumno}} <a class="mr-2" mat-button color="primary"
+              (click)="dialogVer(element.idParalelo)" data-toggle="tooltip" matTooltip="Ver Alumnos">
+              <mat-icon  class="btnVer" aria-hidden="true" aria-label="Example home icon">visibility</mat-icon>
+            </a>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="editar">
+          <th mat-header-cell *matHeaderCellDef>Editar</th>
+          <td mat-cell *matCellDef="let element">
+            <a mat-button color="primary" [routerLink]="['/dashboard/editar-paralelo', element.idParalelo]"
+              data-toggle="tooltip" matTooltip="Editar">
+              <mat-icon aria-hidden="true" aria-label="Example home icon">edit</mat-icon>
+            </a>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="eliminar">
+          <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+          <td mat-cell *matCellDef="let element">
+            <a  mat-button color="warn" data-toggle="tooltip" (click)="eliminar(element)"
+              matTooltip="Eliminar">
+              <mat-icon aria-hidden="true" aria-label="Example home icon">delete</mat-icon>
+            </a>
+          </td>
+        </ng-container>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="9999">No hay datos</td>
+        </tr>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+        (page)="pageEvent = $event" aria-label="Select page">
+      </mat-paginator>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<ng-container *ngIf="cargar">
+  <span class="loader"></span>
+</ng-container>

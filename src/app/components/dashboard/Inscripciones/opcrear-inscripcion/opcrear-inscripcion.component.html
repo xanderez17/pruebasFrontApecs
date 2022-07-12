@@ -1,0 +1,44 @@
+<mat-card class="container">
+  <form [formGroup]="form">
+    <div class="card-header">
+      <mat-card-header>
+        <mat-card-title>Formulario Inscripción:  <strong>{{ curso.titulo }}</strong></mat-card-title>
+      </mat-card-header>
+    </div>
+        <br>
+        <mat-label><strong>Fecha Inscripción:</strong>
+          {{ fecha | date: "dd/MM/yyyy" }}</mat-label>
+        <br>
+      <mat-card-content>
+        <mat-form-field appearance="standard">
+          <mat-label>Buscar Cédula</mat-label>
+          <mat-icon matSuffix>search</mat-icon>
+          <input matInput formControlName="alumno" (keyup)="filtrar($event)" autocomplete="off"  />
+          <div id="example23_filter" class="dataTables_filter"></div>
+        </mat-form-field>
+
+        <mat-label><strong>Alumno: </strong>
+
+          {{ alumno.apellidoPrimer }}
+
+          {{ alumno.apellidoSegundo }}
+
+          {{ alumno.nombrePrimer }}
+
+          {{ alumno.nombreSegundo }}</mat-label>
+
+
+        <mat-card-actions>
+          <div style="text-align: center">
+            <button mat-raised-button color="primary" (click)="irLista()" style="margin-right: 20px">
+              <mat-icon>reply</mat-icon> Volver
+            </button>
+            <button type="submit" [disabled]="form.invalid" mat-raised-button color="accent" (click)="agregar()">
+              <mat-icon>save</mat-icon> Guardar
+            </button>
+          </div>
+        </mat-card-actions>
+      </mat-card-content>
+
+  </form>
+</mat-card>

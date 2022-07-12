@@ -1,0 +1,52 @@
+.card-header {
+  background-color: #0e375d;
+  border-color: gray;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  height: 40px;
+}
+
+.mat-paginator{
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+}
+
+.mat-card-content {
+  padding: 5px 0px 0px 0px;
+}
+.mat-form-field {
+  height: 60px;
+  padding: 0px 20px 0px 20px;
+}
+.mat-table {
+  width: 100%;
+
+}
+.mat-header-cell {
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+.mat-cell {
+  padding: 0px 0px 0px 0px;
+  width: min-content !important;
+}
+
+.matColumnDef{
+  text-align: center;
+}
+
+
+.mat-column-editar {
+  padding: 0;
+  width: 30px !important;
+  text-align: center;
+}
+
+.mat-column-eliminar {
+  padding: 0;
+  width: 30px !important;
+  text-align: center;
+}

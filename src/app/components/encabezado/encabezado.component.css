@@ -1,0 +1,22 @@
+.logo{
+  width: 120px;
+  height: 60px;
+}
+
+.icono{
+  margin-right: auto;
+}
+
+.botones{
+  margin-right: 30px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.login{
+  color: white;
+}
+
+

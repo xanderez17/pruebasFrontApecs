@@ -1,0 +1,121 @@
+
+.mat-card {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  padding: 0px 5px 0px 5px;
+}
+.card-header {
+  background-color: #0e375d;
+  border-color: gray;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  height: 40px;
+
+}
+
+.mat-card-content {
+  padding: 5px 0px 0px 0px;
+}
+.mat-form-field {
+  height: 60px;
+  padding: 0px 20px 0px 20px;
+}
+.mat-table {
+  width: 100%;
+
+}
+.mat-header-cell {
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+.mat-cell {
+  padding: 0px 0px 0px 0px;
+  width: min-content !important;
+}
+
+.matColumnDef{
+  text-align: center;
+}
+.mat-column-duracion {
+
+  width: min-content !important;
+  text-align: center;
+}
+.mat-column-categoria {
+
+  width: min-content !important;
+  text-align: center;
+}
+.mat-column-cupos {
+  padding: 0px;
+  width: min-content !important;
+  text-align: center;
+}
+.mat-column-fechaInicio {
+  padding: 0px;
+  width: min-content !important;
+  text-align: center;
+}
+.mat-column-inscritos {
+  padding: 0px;
+  width: 70px !important;
+  text-align: center;
+}
+.mat-column-matriculados {
+  padding: 0px;
+  width: 70px !important;
+  text-align: center;
+}
+.mat-column-matriculados {
+  width: 70px !important;
+  text-align: center;
+}
+
+
+.mat-column-ver {
+  padding: 0;
+  width: 30px !important;
+  text-align: center;
+}
+.mat-column-editar {
+  padding: 0;
+  width: 30px !important;
+  text-align: center;
+}
+
+.mat-column-eliminar {
+  padding: 0;
+  width: 30px !important;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .headers {
+    display: none;
+  }
+}
+.mat-raised-button{
+  color: #0e375d;
+}
+
+.btnVer {
+  padding: 0px;
+  width: min-content;
+  color: #2ECC71;
+}
+.btnVolver{
+  margin: 0px 50px 0px 0px;
+  background-color: #0e375d;
+  border-color: gray;
+  color: white;
+  float: right;
+}
+.mat-paginator{
+  margin: 0%;
+  padding: 0px;
+  font-size: 12px;
+
+}

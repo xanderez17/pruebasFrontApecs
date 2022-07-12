@@ -1,0 +1,181 @@
+<div class="main-content" *ngIf="cargar==false">
+  <div class="container-fluid">
+    <div class="col-md-14" style="margin: auto">
+      <div class="card text-center">
+        <div class="card-header">
+          <mat-card-header>
+            <mat-card-title>Formulario Representante</mat-card-title>
+          </mat-card-header>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="form">
+            <mat-card-content>
+              <div class="row">
+                <div class="col">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Primer nombre</mat-label>
+                    <input
+                      matInput
+                      autocomplete="off"
+                      formControlName="primerNombre"
+                      [(ngModel)]="lista.nombrePrimer"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Segundo nombre</mat-label>
+                    <input
+                      matInput
+                      autocomplete="off"
+                      formControlName="segundoNombre"
+                      [(ngModel)]="lista.nombreSegundo"
+                    />
+                  </mat-form-field>
+                </div>
+
+                <div class="col">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Primer Apellido</mat-label>
+                    <input
+                      matInput
+                      autocomplete="off"
+                      formControlName="primerApellido"
+                      [(ngModel)]="lista.apellidoPrimer"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Segundo Apellido</mat-label>
+                    <input
+                      matInput
+                      autocomplete="off"
+                      formControlName="segundoApellido"
+                      [(ngModel)]="lista.apellidoSegundo"
+                    />
+                  </mat-form-field>
+                </div>
+
+
+
+                <div class="col">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Identificación</mat-label>
+                    <input
+                      matInput
+                      type="any"
+                      maxlength="10"
+                      autocomplete="off"
+                      formControlName="identificacion"
+                      [(ngModel)]="lista.identificacion"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Teléfono</mat-label>
+                    <input
+                      matInput
+                      maxlength="10"
+                      autocomplete="off"
+                      formControlName="telefono"
+                      [(ngModel)]="lista.telefono"
+                    />
+                  </mat-form-field>
+                </div>
+
+
+
+                <div class="col">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Correo</mat-label>
+                    <input
+                      matInput
+                      type="email"
+                      autocomplete="off"
+                      formControlName="correo"
+                      [(ngModel)]="lista.correo"
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Fecha de Nacimiento</mat-label>
+                    <input
+                      matInput
+                      [matDatepicker]="myDatepicker1"
+                      autocomplete="off"
+                      formControlName="fechaNacimiento"
+                      [(ngModel)]="lista.fechaNacimiento"
+                    />
+                    <mat-datepicker-toggle matSuffix [for]="myDatepicker1"></mat-datepicker-toggle>
+                    <mat-datepicker #myDatepicker1></mat-datepicker>
+                  </mat-form-field>
+                </div>
+
+                <div class="col">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Direccion</mat-label>
+                    <input
+                      matInput
+                      autocomplete="off"
+                      formControlName="direccion"
+                      [(ngModel)]="lista.direccion"
+                    />
+                  </mat-form-field>
+                </div>
+
+                <div class="col">
+                  <mat-radio-group
+                    formControlName="sexo"
+                    [(ngModel)]="lista.sexo"
+                    class="tp-radio-group"
+
+                  >
+                    <label
+                    >Sexo:
+                      <br/>
+                      <mat-radio-button value="Masculino" class="tp-radio-button">Masculino</mat-radio-button>
+                      <mat-radio-button value="Femenino" class="tp-radio-button">Femenino</mat-radio-button>
+                    </label
+                    >
+                  </mat-radio-group>
+                </div>
+
+
+              </div>
+            </mat-card-content>
+            <div class="col">
+            <mat-card-actions style="text-align: center">
+              <button
+                mat-raised-button
+                color="primary"
+                (click)="irLista()"
+                style="margin-right: 20px"
+              >
+                <mat-icon>reply</mat-icon>
+                Volver
+              </button>
+              <button
+                type="submit"
+                [disabled]="form.invalid"
+                mat-raised-button
+                color="accent"
+                (click)="agregar()"
+              >
+                <mat-icon>save</mat-icon>
+                Guardar
+              </button>
+            </mat-card-actions>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="cargar">
+  <span class="loader"></span>
+</ng-container>

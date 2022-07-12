@@ -1,0 +1,25 @@
+.container{
+  display: flex;
+}
+.mat-cell{
+ text-align: left;
+  padding: 5px;
+
+}
+.mat-form-field{
+  padding: 20px;
+}
+
+.card-header{
+  background-color: #0e375d;
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  border-color: gray;
+}
+
+.card{
+  border: 2px solid;
+  border-color: gray;
+  justify-content: center;
+}

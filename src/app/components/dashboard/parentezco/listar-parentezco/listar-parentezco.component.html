@@ -1,0 +1,67 @@
+<mat-card class="container">
+  <mat-toolbar>
+    <div class="col-md-10 text-left">Lista de Parentezcos</div>
+    <div class="col-md-2 text-right">
+    <div class="dt-buttons">
+      <button mat-raised-button color="accent" routerLink="/dashboard/crear-parentezco" style="margin-right: 20px;">
+        Asignar Representante<mat-icon>add</mat-icon>
+      </button>
+    </div>
+    </div>
+  </mat-toolbar>
+
+  <mat-form-field appearance="standard">
+    <mat-label>Buscar por nombre</mat-label><mat-icon matSuffix>search</mat-icon>
+    <input matInput (keyup)="filtrar($event)" autocomplete="off" #input>
+    <div id="example23_filter" class="dataTables_filter">
+    </div>
+
+  </mat-form-field>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="lista" matSort>
+
+      <ng-container matColumnDef="representante">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Representante</th>
+        <td mat-cell *matCellDef="let element"> {{element.representante.nombrePrimer}} {{ element.representante.apellidoPrimer }} </td>
+      </ng-container>
+      <ng-container matColumnDef="telefono">
+        <th mat-header-cell *matHeaderCellDef> Teléfono<th>
+        <td mat-cell *matCellDef="let element"> {{element.representante.telefono}} </td>
+      </ng-container>
+      <ng-container matColumnDef="alumno">
+        <th mat-header-cell *matHeaderCellDef> Alumno</th>
+        <td mat-cell *matCellDef="let element"> {{element.alumno.nombrePrimer}} </td>
+      </ng-container>
+      <ng-container matColumnDef="parentezco">
+        <th mat-header-cell *matHeaderCellDef> Parentezco</th>
+        <td mat-cell *matCellDef="let element"> {{element.modalidad}} </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let element">
+          <a class="mr-2" mat-button color="primary" [routerLink]="['/dashboard/editar-parentezco', element.idParentezco]"
+            data-toggle="tooltip" matTooltip="Editar">
+            <mat-icon aria-hidden="true" aria-label="Example home icon">mode_edit</mat-icon>
+          </a>
+          <a class="mr-2" mat-button color="warn" data-toggle="tooltip" (click)="eliminar(element)"
+            matTooltip="Eliminar">
+            <mat-icon aria-hidden="true" aria-label="Example home icon">delete</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="9999">
+       No hay datos
+        </td>
+      </tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+      (page)="pageEvent = $event" aria-label="Select page">
+    </mat-paginator>
+  </div>
+</mat-card>

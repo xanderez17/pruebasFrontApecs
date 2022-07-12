@@ -1,0 +1,178 @@
+<mat-card class="container">
+  <form [formGroup]="form">
+    <div class="card-header">
+      <mat-card-header>
+        <mat-card-title>Formulario Cursos</mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+      </mat-card-header>
+    </div>
+
+      <mat-card-content>
+        <br />
+        <mat-label><strong>Titulo:</strong> {{ catalogos.nombre }}
+          {{ lista.catalogo.nombre }}</mat-label>
+        <br />
+        <mat-label><strong>Descripción: </strong> {{ catalogos.descripcion
+          }}{{ lista.catalogo.descripcion }}</mat-label>
+        <br />
+        <mat-label><strong>Duración: </strong> {{ catalogos.duracion }}
+          {{ lista.catalogo.duracion }}
+        </mat-label>
+        <br />
+        <button mat-raised-button color="accent" (click)="dialogNuevaCategoria()" style="margin-right: 20px">
+          Nueva Categoría
+        </button>
+        <mat-form-field style="width: 200px" appearance="legacy">
+          <mat-label>Categoria</mat-label>
+          <mat-select matInput formControlName="categoria" [compareWith]="compareCategorias"
+            [(ngModel)]="lista.categoria">
+            <mat-option *ngFor="let x of listaCategorias" [value]="x">{{ x.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field style="width: 80px" appearance="legacy">
+          <mat-label>Cupos</mat-label>
+          <input matInput placeholder="25" autocomplete="off" formControlName="cupos" [(ngModel)]="lista.cupos" />
+        </mat-form-field>
+        <mat-form-field style="width: 150px" appearance="legacy">
+          <mat-label>Modalidad</mat-label>
+          <mat-select formControlName="modalidad" [(ngModel)]="lista.modalidad">
+            <mat-option value="Presencial">Presencial</mat-option>
+            <mat-option value="Semipresencial">Semipresencial</mat-option>
+            <mat-option value="Virtual">Virtual</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+
+        <mat-form-field style="width: 200px" appearance="legacy">
+          <mat-label>Sucursal</mat-label>
+          <mat-select matInput formControlName="sucursal" [compareWith]="compareSucursal" [(ngModel)]="lista.sucursal">
+            <mat-option *ngFor="let x of listaSucursal" [value]="x">{{ x.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy">
+          <mat-label>Estado</mat-label>
+          <mat-select formControlName="estado" [(ngModel)]="lista.estado">
+            <mat-option value="Inscripcion">Inscripción</mat-option>
+            <mat-option value="Inicio">Inicio</mat-option>
+            <mat-option value="Finalizado">Finalizado</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+        <br />
+
+        <br />
+
+        <mat-form-field style="width: 150px" appearance="legacy">
+          <mat-label>Fecha de inscripción</mat-label>
+          <input matInput [matDatepicker]="myDatepicker1" autocomplete="off" formControlName="fechaInscripcion"
+            [(ngModel)]="lista.fechaInscripcion" />
+          <mat-datepicker-toggle [for]="myDatepicker1" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #myDatepicker1></mat-datepicker>
+        </mat-form-field>
+
+
+
+        <mat-form-field style="width: 120px" appearance="legacy">
+          <mat-label>Fecha inicio</mat-label>
+          <input matInput [matDatepicker]="myDatepicker2" autocomplete="off" formControlName="fechaInicio"
+            [(ngModel)]="lista.fechaInicio" />
+          <mat-datepicker-toggle [for]="myDatepicker2" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #myDatepicker2></mat-datepicker>
+        </mat-form-field>
+
+
+        <mat-form-field style="width: 120px" appearance="legacy">
+          <mat-label>Fecha fin</mat-label>
+          <input matInput [matDatepicker]="myDatepicker3" autocomplete="off" formControlName="fechaFin"
+            [(ngModel)]="lista.fechaFin" />
+          <mat-datepicker-toggle [for]="myDatepicker3" matSuffix></mat-datepicker-toggle>
+          <mat-datepicker #myDatepicker3></mat-datepicker>
+        </mat-form-field>
+
+
+        <mat-form-field style="width: 400px" appearance="legacy">
+          <mat-label>Seminarios</mat-label>
+          <input matInput autocomplete="off" formControlName="seminarios" [(ngModel)]="lista.seminarios" />
+        </mat-form-field>
+
+        <br />
+        <mat-label>Horarios: </mat-label>
+        <mat-form-field style="width: 350px" appearance="legacy">
+          <mat-label>Días</mat-label>
+
+          <mat-select [compareWith]="compareDias" formControlName="dias" [(ngModel)]="lista.dias" multiple>
+            <mat-option *ngFor="let dia of listaDias" [value]="dia">
+              {{ dia.descripcion }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field style="width: 80px" appearance="legacy">
+          <mat-label>Hora Inicio</mat-label>
+          <input matInput type="time" formControlName="horaInicio" min="07:00" max="20:00" step="360"
+            [(ngModel)]="lista.horaInicio" />
+        </mat-form-field>
+
+        <mat-form-field style="width: 80px" appearance="legacy">
+          <mat-label>Hora Fin</mat-label>
+          <input matInput type="time" formControlName="horaFin" min="08:00" max="22:00" step="3600"
+            [(ngModel)]="lista.horaFin" />
+        </mat-form-field>
+
+        <br />
+        <mat-label>Costos</mat-label>
+        <mat-form-field style="width: 150px" appearance="legacy">
+          <mat-label>Valor Matrícula</mat-label>
+          <input matInput placeholder="25,00" autocomplete="off" formControlName="valorMatricula"
+            [(ngModel)]="lista.valorMatricula" />
+        </mat-form-field>
+
+        <mat-form-field style="width: 150px" appearance="legacy">
+          <mat-label>Valor Curso</mat-label>
+          <input matInput placeholder="125,00" autocomplete="off" formControlName="valorCurso"
+            [(ngModel)]="lista.valorCurso" />
+        </mat-form-field>
+
+        <mat-form-field style="width: 150px" appearance="legacy">
+          <mat-label>Valor Reserva</mat-label>
+          <input matInput placeholder="50,00" autocomplete="off" formControlName="valorReserva"
+            [(ngModel)]="lista.reserva" />
+        </mat-form-field>
+        <mat-form-field style="width: 500px" appearance="legacy">
+          <mat-label>Valor Descuento</mat-label>
+          <input matInput placeholder=" $100 dólares (Matricula: $15.00 - Curso: $85.00 ) |Pago Contado: $85.00"
+            autocomplete="off" formControlName="valorDescuento" [(ngModel)]="lista.valorDescuento" />
+        </mat-form-field>
+
+        <div class="row ">
+          <div class="col  col-md-3 col-xs-12" >
+            <img src="{{ catalogos.img }}" src="{{ lista.catalogo.img }}" />
+          </div>
+          <div class="col  col-md-3 col-xs-12" >
+            <iframe [src]="lista.catalogo.pdf | safe" [src]="catalogos.pdf | safe"></iframe>
+          </div>
+        </div>
+
+
+
+      <mat-card-actions>
+        <div style="text-align: center">
+          <button mat-raised-button color="primary" (click)="irLista()" style="margin-right: 20px">
+            <mat-icon>reply</mat-icon>
+            Volver
+          </button>
+          <button type="submit" [disabled]="form.invalid" mat-raised-button color="accent" (click)="agregar()">
+            <mat-icon>save</mat-icon>
+            Guardar
+          </button>
+        </div>
+
+      </mat-card-actions>
+    </mat-card-content>
+  </form>
+</mat-card>

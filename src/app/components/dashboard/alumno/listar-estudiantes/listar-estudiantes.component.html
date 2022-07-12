@@ -1,0 +1,105 @@
+<mat-card class="container">
+  <div class="card-header">
+    <mat-card-header>
+      <mat-card-title>Lista de Alumnos</mat-card-title>
+    </mat-card-header>
+  </div>
+    <mat-card-content>
+      <div class="dt-buttons">
+        <button
+          mat-raised-button
+          color="accent"
+          routerLink="/dashboard/crear-alumno"
+          style="float: right"
+        >
+          Nuevo Alumno<mat-icon>add</mat-icon>
+        </button>
+      </div>
+
+
+
+
+  <mat-form-field appearance="standard">
+    <mat-label>Buscar por nombre</mat-label><mat-icon matSuffix>search</mat-icon>
+    <input matInput (keyup)="filtrar($event)" autocomplete="off" #input />
+    <div id="example23_filter" class="dataTables_filter"></div>
+  </mat-form-field>
+  <div class="mat-elevation-z8" *ngIf="cargar==false">
+    <table mat-table [dataSource]="lista" matSort>
+
+
+      <ng-container matColumnDef="identificacion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Identificación</th>
+        <td mat-cell *matCellDef="let element">{{ element.identificacion }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+        <td mat-cell *matCellDef="let element">{{ element.nombrePrimer }} {{ element.nombreSegundo }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="apellido">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Apellido</th>
+        <td mat-cell *matCellDef="let element">{{ element.apellidoPrimer }} {{ element.apellidoSegundo }}  </td>
+      </ng-container>
+
+
+
+      <ng-container matColumnDef="direccion">
+        <th class="headers" mat-header-cell *matHeaderCellDef mat-sort-header>Dirección</th>
+        <td class="headers" mat-cell *matCellDef="let element">{{ element.direccion }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="correo">
+        <th class="headers" mat-header-cell *matHeaderCellDef mat-sort-header>Correo</th>
+        <td class="headers" mat-cell *matCellDef="let element">{{ element.correo }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="telefono">
+        <th class="headers" mat-header-cell *matHeaderCellDef mat-sort-header>Teléfono</th>
+        <td class="headers" mat-cell *matCellDef="let element">{{ element.telefono }}</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="editar">
+        <th mat-header-cell *matHeaderCellDef>Editar</th>
+        <td mat-cell *matCellDef="let element">
+          <a class="mr-2" mat-button color="primary" [routerLink]="['/dashboard/editar-alumno', element.id]" data-toggle="tooltip" matTooltip="Editar">
+            <mat-icon aria-hidden="true" aria-label="Example home icon">mode_edit</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="eliminar">
+        <th mat-header-cell *matHeaderCellDef>Eliminar</th>
+        <td mat-cell *matCellDef="let element">
+          <a class="mr-2" mat-button color="warn" data-toggle="tooltip" (click)="eliminar(element)" matTooltip="Eliminar">
+            <mat-icon aria-hidden="true" aria-label="Example home icon">delete</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+   <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="9999">
+         No hay datos
+          </td>
+        </tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [length]="length"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="pageEvent = $event"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
+    </mat-card-content>
+</mat-card>
+
+<ng-container *ngIf="cargar">
+  <span class="loader"></span>
+</ng-container>

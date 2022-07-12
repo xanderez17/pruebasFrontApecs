@@ -1,0 +1,42 @@
+
+.mat-dialog-container {
+  margin: 0px;
+  padding: 0px;
+}
+.mat-card{
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+ }
+ .mat-card-content{
+  padding: 0px 0px 0px 0px;
+ }
+ .mat-form-field{
+  height: 60px;
+  padding: 0px 20px 0px 20px;
+ }
+.mat-table{
+  width: 100%;
+
+
+}
+.mat-cell{
+  padding: 0px 10px 0px 10px;
+
+}
+
+
+
+@media (max-width: 900px){
+.headers{
+  display: none;
+}
+}
+
+.card-header{
+  background-color: #0e375d;
+  border-color: gray;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}

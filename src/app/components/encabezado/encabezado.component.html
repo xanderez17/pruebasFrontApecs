@@ -1,0 +1,27 @@
+<mat-toolbar *ngIf="ocultar" style="background-color: #0e375d">
+  <span><img class="logo" src="assets/recursos/apecsSlogan.png" /></span>
+  <span class="example-spacer"></span>
+  <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+    <li>
+      <a href="#" style="color: white" class="nav-link px-2 link-secondary">Inicio</a>
+    </li>
+    <li>
+      <a href="#" style="color: white" class="nav-link px-2 link-dark">Formación</a>
+    </li>
+    <li>
+      <a href="#" style="color: white" class="nav-link px-2 link-dark">Ubicación</a>
+    </li>
+    <li>
+      <a href="#" style="color: white" class="nav-link px-2 link-dark">Nosotros</a>
+    </li>
+    <li>
+      <a href="#" style="color: white" class="nav-link px-2 link-dark">Edu Virtual</a>
+    </li>
+    <li>
+      <a href="#" style="color: white" class="nav-link px-2 link-dark">Contacto</a>
+    </li>
+  </ul>
+  <button mat-icon-button class="login" matTooltip="Login Usuario">
+    <mat-icon (click)="openDialog()"><span class="material-icons">account_circle</span></mat-icon>
+  </button>
+</mat-toolbar>

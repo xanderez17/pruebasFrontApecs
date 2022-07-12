@@ -1,0 +1,33 @@
+
+.contenedor{
+  width: 100%;
+  display: flex;
+}
+
+.mat-table{
+  width: 100%;
+}
+.ng-container{
+  padding: 10px;
+}
+.mat-header-cell {
+  text-align: center;
+
+}
+.mat-cell{
+  padding-right: 10px;
+}
+
+@media (max-width: 900px){
+.headers{
+  display: none;
+}
+}
+
+.card-header{
+  background-color: #0e375d;
+  border-color: gray;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}

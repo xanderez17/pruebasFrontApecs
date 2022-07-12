@@ -1,0 +1,110 @@
+<div class="main-content" *ngIf="cargar==false">
+  <div class="container-fluid">
+    <div class="col-md-8" style="margin: auto">
+      <div class="card text-center">
+        <div class="card-header">
+          <mat-card-header>
+            <mat-card-title>Formulario Paralelo</mat-card-title>
+          </mat-card-header>
+        </div>
+
+        <div class="card-body">
+          <form [formGroup]="formParalelo">
+            <mat-card-content>
+              <div class="row">
+                <div class="col">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Nombre</mat-label>
+                    <input
+                      matInput
+                      autocomplete="off"
+                      formControlName="nombre"
+                      [(ngModel)]="lista.nombre"
+                    />
+                  </mat-form-field>
+                </div>
+
+                <div class="col">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Aula</mat-label>
+                    <mat-select
+                      formControlName="aula"
+                      [(ngModel)]="lista.aula"
+                      [compareWith]="compareAula"
+                    >
+                      <mat-option *ngFor="let x of listaAulas" [value]="x">
+                        {{ x.nombre }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Docente</mat-label>
+                    <mat-select
+                      matInput
+                      formControlName="docente"
+                      [(ngModel)]="lista.docente"
+                      [compareWith]="compareDocente"
+                    >
+                      <mat-option *ngFor="let x of listaDocentes" [value]="x"
+                      >{{ x.nombrePrimer }} {{ x.apellidoPrimer }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="col">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Curso</mat-label>
+                    <mat-select
+                      matInput
+                      formControlName="curso"
+                      [(ngModel)]="lista.curso"
+                      [compareWith]="compareCurso"
+                    >
+                      <mat-option *ngFor="let x of listaCursos" [value]="x"
+                      >{{ x.titulo }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+              </div>
+            </mat-card-content>
+
+            <mat-card-actions style="text-align: center">
+              <button
+                mat-raised-button
+                color="primary"
+                (click)="irLista()"
+                style="margin-right: 20px"
+              >
+                <mat-icon>reply</mat-icon>
+                Volver
+              </button>
+              <button
+                type="submit"
+                [disabled]="formParalelo.invalid"
+                mat-raised-button
+                color="accent"
+                (click)="agregar()"
+              >
+                <mat-icon>save</mat-icon>
+                Guardar
+              </button>
+            </mat-card-actions>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="cargar">
+  <span class="loader"></span>
+</ng-container>
+

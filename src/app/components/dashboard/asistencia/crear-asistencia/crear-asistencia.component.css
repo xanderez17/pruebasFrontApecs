@@ -1,0 +1,21 @@
+.container {
+  min-width: 500px;
+}
+.mat-form-field {
+  padding: 8px;
+}
+
+
+
+.mat-label {
+  padding: 8px;
+}
+
+.card-header{
+  background-color: #0e375d;
+  border-color: gray;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+}
+

@@ -1,0 +1,96 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-14">
+        <div class="card text-center">
+          <div class="card-header">
+            <h4 class="card-title">Crear Matrícula</h4>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="form" appearance="standard">
+              <mat-card-content>
+                <mat-label
+                  ><strong>Matrícula Nº</strong> {{ numMatricula }}</mat-label
+                >
+                <br />
+
+                <mat-label
+                  ><strong>Fecha Matrícula</strong>
+                  {{ fecha | date: "dd/MM/yyyy" }}</mat-label
+                >
+
+                <br />
+
+                <mat-label
+                  ><strong>Indentificacion: </strong>
+
+                  {{ inscripcion.alumno.identificacion }}</mat-label
+                ><br />
+
+                <mat-label
+                  ><strong>Apellidos</strong>
+
+                  {{ inscripcion.alumno.apellidoPrimer }}
+                  {{ inscripcion.alumno.apellidoSegundo }}</mat-label
+                ><br />
+
+                <mat-label
+                  ><strong>Nombre</strong>
+
+                  {{ inscripcion.alumno.nombrePrimer }}
+                  {{ inscripcion.alumno.nombreSegundo }}
+                </mat-label>
+                <br />
+
+                <mat-label
+                  ><strong>Curso: </strong>
+                  {{ inscripcion.curso.titulo }}
+                </mat-label>
+                <br />
+                <mat-label>
+                  <strong>Fecha Inicio: </strong>
+                  {{ inscripcion.curso.fechaInicio }} </mat-label
+                ><br />
+                <mat-form-field appearance="legacy">
+                  <mat-label>Paralelo</mat-label>
+                  <mat-select
+                    matInput
+                    autocomplete="off"
+                    formControlName="paralelo"
+                    [compareWith]="compareParalelo"
+                    [(ngModel)]="lista.paralelo"
+                  >
+                    <mat-option *ngFor="let x of listaParalelos" [value]="x">{{
+                      x.nombre
+                    }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <br>
+              </mat-card-content>
+              <mat-card-actions>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  [mat-dialog-close]="true"
+                  style="margin-right: 20px"
+                >
+                  <mat-icon>reply</mat-icon> Volver
+                </button>
+                <button
+                  type="submit"
+
+                  mat-raised-button
+                  color="accent"
+                  [mat-dialog-close]="true"
+                  (click)="agregar()"
+                >
+                  <mat-icon>save</mat-icon>Guardar
+                </button>
+              </mat-card-actions>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

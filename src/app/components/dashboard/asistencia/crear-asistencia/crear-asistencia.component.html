@@ -1,0 +1,69 @@
+<div class="main-content">
+  <div class="container-fluid">
+
+    <div class="col-md-14">
+      <div class="card text-center">
+        <div class="card-header">
+          <mat-card-header>
+            <mat-card-title>Registro de Asistencia de:
+              {{ lista.curso.catalogo.nombre }}</mat-card-title>
+          </mat-card-header>
+        </div>
+        <div class="card-body">
+          <mat-card-content>
+            <form [formGroup]="form">
+              <div class="row">
+                <div class="col">
+
+                    <mat-label>Fecha Asistencia:
+                    {{ fecha | date: "dd/MM/yyyy" }}</mat-label
+                  >
+                  <mat-form-field style="width: 350px" appearance="legacy">
+                    <mat-label>Alumnos</mat-label>
+
+                    <mat-select [compareWith]="compareAlumnos" formControlName="alumnos" [(ngModel)]="lista.alumnos"
+                      multiple>
+                      <mat-option *ngFor="let a of listaAlumno" [value]="a">
+                        {{ a.nombrePrimer }} {{ a.nombreSegundo }} {{ a.apellidoPrimer }} {{ a.apellidoSegundo }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+
+                </div>
+              </div>
+            </form>
+          </mat-card-content>
+
+
+
+          <mat-card-actions style="text-align: center">
+            <button mat-raised-button color="primary" (click)="irLista()" style="margin-right: 20px">
+              <mat-icon>reply</mat-icon>
+              Volver
+            </button>
+            <button type="submit"    [disabled]="form.invalid"  mat-raised-button color="accent" (click)="agregarAsistencia()">
+              <mat-icon>save</mat-icon>
+              Guardar
+            </button>
+          </mat-card-actions>
+
+        </div>
+      </div>
+    </div>
+    <h1>Asitencias</h1>
+
+
+        <div class="row">
+          <div class="col-sm-4" style="min-width: 300px;" *ngFor="let a of listaAsistencias ">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Fecha: {{a.fechaAsistencia | date: "dd/MM/yyyy" }}</h5>
+            <mat-label>Alumnos</mat-label><br>
+            <span *ngFor="let al of a.alumnos">
+              {{ al.nombrePrimer }} {{ al.nombreSegundo }} {{ al.apellidoPrimer }} {{ al.apellidoSegundo }}   <br>         </span>
+            <a style="float:center;" mat-raised-button color="accent" (click)="cargarId(a.idAsistencia)">Editar</a>
+          </div>
+        </div>
+
+    </div>

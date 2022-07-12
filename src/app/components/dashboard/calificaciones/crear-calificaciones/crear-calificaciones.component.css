@@ -1,0 +1,148 @@
+/* LOADER */
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  border-top: 4px solid #0e375d;
+  border-right: 4px solid transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+;
+}
+.loader::after {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border-left: 4px solid darkorange;
+  border-bottom: 4px solid transparent;
+  animation: rotation 0.5s linear infinite reverse;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+.card-header {
+  background-color: #0e375d;
+  border-color: gray;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  height: 40px;
+
+}
+
+.mat-card-content {
+display: flex;
+  width: auto;
+  padding: 5px 0px 0px 0px;
+  justify-content: center;
+}
+.mat-form-field {
+  height: 60px;
+  padding: 0px 20px 0px 20px;
+}
+.mat-table {
+width: 100%;
+  justify-content: center;
+
+}
+.mat-header-cell {
+  text-align: center;
+  font-size: 15px;
+  font-weight: bold;
+}
+.mat-cell {
+  padding: 0px 0px 0px 0px;
+  width: min-content !important;
+  text-align: center;
+}
+
+.matColumnDef{
+  text-align: center;
+}
+
+.mat-column-editar {
+  padding: 0;
+  width: 30px !important;
+  text-align: center;
+}
+
+.mat-column-eliminar {
+  padding: 0;
+  width: 30px !important;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .headers {
+    display: none;
+  }
+}
+.mat-raised-button{
+  color: #0e375d;
+}
+
+.btnVer {
+  padding: 0px;
+  width: min-content;
+  color: #2ECC71;
+}
+.btnReporte{
+  background-color: coral;
+  color: white;
+}
+
+.btnVolver{
+  margin: 0px 50px 0px 0px;
+  background-color: #0e375d;
+  border-color: gray;
+  color: white;
+  float: right;
+}
+.btnVol{
+  margin: 0px 50px 0px 0px;
+  background-color: #0e375d;
+  border-color: gray;
+  color: white;
+
+}
+.col2{
+  width: 300px;
+  padding: 0px 50px 0px 30px;
+}
+.btnNuevo{
+  margin: 0px 50px 0px 0px;
+
+  border-color: gray;
+
+  float: right;
+}
+.btnClean{
+  background-color:  #2ECC71;
+
+}
+
+.mat-paginator{
+  margin: 0%;
+  padding: 0px;
+  font-size: 12px;
+
+}
+
+

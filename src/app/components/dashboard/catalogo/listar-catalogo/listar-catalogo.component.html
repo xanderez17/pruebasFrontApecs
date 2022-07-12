@@ -1,0 +1,38 @@
+<mat-card class="container" *ngIf="cargar==false">
+  <div class="card-header">
+    <mat-card-header>
+      <mat-card-title>Lista de Catálogos</mat-card-title>
+    </mat-card-header>
+
+  </div>
+  <br>
+
+  <div class="content">
+    <div class="row ">
+      <div class="items  col-md-3 col-xs-12 " *ngFor="let x of lista">
+        <div class="card-body">
+        <img class="card-img-top " src="{{x.img }}" alt="img">
+
+          <h2 class="card-title">{{x.nombre}}</h2>
+          <mat-card-actions>
+            <a mat-button color="warn" data-toggle="tooltip" (click)="eliminar(x)" matTooltip="Eliminar">
+              <mat-icon aria-hidden="true">delete</mat-icon>
+            </a>
+            <a mat-button color="primary" [routerLink]="['/dashboard/editar-catalogo', x.idCatalogo]"
+              data-toggle="tooltip" matTooltip="Editar">
+              <mat-icon aria-hidden="true">mode_edit</mat-icon>
+            </a>
+            <a mat-button color="indigo" [routerLink]="['/dashboard/crear-curso', x.idCatalogo]" data-toggle="tooltip"
+              matTooltip="Crear curso">
+              <mat-icon aria-hidden="true">forward</mat-icon>
+            </a>
+          </mat-card-actions>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card>
+
+<ng-container *ngIf="cargar">
+  <span class="loader"></span>
+</ng-container>

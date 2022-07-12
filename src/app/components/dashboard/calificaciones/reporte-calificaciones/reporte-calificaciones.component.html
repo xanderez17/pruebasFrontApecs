@@ -1,0 +1,102 @@
+<!--<mat-card class="container">
+  <mat-card-header>
+    <mat-card-title>
+      Reporte de Calificaciones
+    </mat-card-title>
+  </mat-card-header>
+
+  <button mat-raised-button  style="margin-right: 20px"
+          (click)="generarReporte()">Generar Reporte</button>
+
+  <table mat-table [dataSource]="listaCalificaciones" matSort>
+
+    <ng-container matColumnDef="identificacion">
+      <th mat-header-cell *matHeaderCellDef>Identificacion</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.alumno.identificacion }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="alumno">
+      <th mat-header-cell *matHeaderCellDef>Alumno</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.alumno.apellidoPrimer }} {{ element.alumno.apellidoSegundo }} {{ element.alumno.nombrePrimer }} {{
+        element.alumno.nombreSegundo }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="asistencia">
+      <th mat-header-cell *matHeaderCellDef>Asistencia</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.asistencia}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="tareas">
+      <th mat-header-cell *matHeaderCellDef>Tareas</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.tareas}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="trabajos">
+      <th mat-header-cell *matHeaderCellDef>Trabajos</th>
+      <td mat-cell *matCellDef="let element">
+        {{element.trabajos}}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="examen">
+      <th mat-header-cell *matHeaderCellDef>Examen</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.examen }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="promedio">
+      <th mat-header-cell *matHeaderCellDef>Promedio</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.promedio }}
+      </td>
+    </ng-container>
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="9999">No hay datos</td>
+    </tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</mat-card>-->
+
+<mat-card class="container">
+  <mat-card-header>
+    <mat-card-title>
+      Reporte de Calificaciones <br> {{lista.curso.catalogo.nombre}}
+    </mat-card-title>
+  </mat-card-header>
+
+  Alumno:
+
+  {{lista.alumno.apellidoPrimer}}
+  {{lista.alumno.apellidoSegundo}}
+  {{lista.alumno.nombrePrimer}}
+  {{lista.alumno.nombreSegundo}}
+
+  <br> Asistencia
+  <strong>
+    {{lista.asistencia}}
+  </strong>
+  <br> Tareas
+  <strong>
+    {{lista.tareas}}
+  </strong>
+  <br> Trabajos
+  <strong>
+    {{lista.trabajos}}
+  </strong>
+  <br> Examen
+  <strong>
+    {{lista.examen}}
+  </strong>
+  <br> Promedio
+  <strong>
+    {{lista.promedio}}
+  </strong>
+  <br>
+
+  <button mat-raised-button style="margin-right: 20px" (click)="generarReporte()">Generar Reporte</button>
+
+</mat-card>

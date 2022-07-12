@@ -1,0 +1,35 @@
+.container {
+width: 100%;
+  }
+  .mat-form-field {
+    padding: 0px 10px 0px 10px;
+
+  }
+
+
+
+  img,
+  iframe {
+    width: 200px;
+    height: 300px;
+  }
+
+  .mat-label {
+    padding: 8px;
+  }
+
+  .card-header{
+    background-color: #0e375d;
+    border-color: gray;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+  }
+
+.row{
+justify-content: center;
+align-items: center;
+align-content: center;
+display: flex;
+padding: 0px;
+}

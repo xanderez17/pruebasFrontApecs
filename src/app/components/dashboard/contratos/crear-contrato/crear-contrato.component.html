@@ -1,0 +1,228 @@
+<mat-card class="container">
+  <form [formGroup]="form">
+    <div class="card-header">
+      <mat-card-header>
+        <mat-card-title>Formulario Contrato</mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+      </mat-card-header>
+    </div>
+    <div class="content">
+      <mat-card-content>
+        <div class="texto" style="width: 350px">
+          <mat-label><strong>Contrato Nº <b>{{ listaContratos.length+1 }}</b></strong></mat-label>
+        </div>
+        <div class="texto" style="width: 350px">
+          Fecha Contrato <b>{{ fecha | date: "dd/MM/yyyy" }}</b>
+        </div>
+
+        <mat-label><strong>Representante</strong><br /></mat-label>
+        <button mat-raised-button color="accent" (click)="openDialog()">
+          Nuevo Representante <mat-icon>badge</mat-icon>
+        </button>
+
+        <mat-form-field style="width: 150px" appearance="legacy">
+          <mat-label>Buscar representante por cédula</mat-label>
+          <input matInput maxlength="10" (keyup)="filtrarRepre($event)" formControlName="repreId" #input
+            [(ngModel)]="lista.representante.identificacion" />
+          <div id="example23_filter" class="dataTables_filter"></div>
+        </mat-form-field>
+
+        <mat-label>
+          {{ lista.representante.apellidoPrimer }}
+          {{ representante.apellidoPrimer }}
+          {{ lista.representante.apellidoSegundo }}
+          {{ representante.apellidoPrimer }}
+          {{ lista.representante.nombrePrimer }}
+          {{ representante.nombrePrimer }}
+          {{ lista.representante.nombreSegundo }}
+          {{ representante.nombreSegundo }}
+        </mat-label>
+        <mat-form-field style="width: 120px" appearance="legacy">
+          <mat-label>Parentezco</mat-label>
+          <mat-select formControlName="parentezco" [(ngModel)]="listaParentezco.relacionParentezco">
+            <mat-option value="0"> NA</mat-option>
+            <mat-option value="1"> Abuelo</mat-option>
+            <mat-option value="2"> Abuela</mat-option>
+            <mat-option value="3"> Bisabuela</mat-option>
+            <mat-option value="4"> Bisabuelo</mat-option>
+            <mat-option value="5"> Cuñada</mat-option>
+            <mat-option value="6"> Cuñado</mat-option>
+            <mat-option value="7"> Hermanastra</mat-option>
+            <mat-option value="8"> Hermanastro</mat-option>
+            <mat-option value="9"> Hijastro</mat-option>
+            <mat-option value="10"> Hijastra</mat-option>
+            <mat-option value="11"> Madre</mat-option>
+            <mat-option value="12"> Madrastra</mat-option>
+            <mat-option value="13"> Nieto</mat-option>
+            <mat-option value="14"> Nieta</mat-option>
+            <mat-option value="15"> Nuera</mat-option>
+            <mat-option value="16"> Padre</mat-option>
+            <mat-option value="17"> Padrastro</mat-option>
+            <mat-option value="18"> Primo</mat-option>
+            <mat-option value="19"> Prima</mat-option>
+            <mat-option value="20"> Sobrino</mat-option>
+            <mat-option value="21"> Sobrina</mat-option>
+            <mat-option value="22"> Suegro</mat-option>
+            <mat-option value="23"> Suegra</mat-option>
+            <mat-option value="24"> Tío</mat-option>
+            <mat-option value="25"> Tía</mat-option>
+            <mat-option value="26"> Yerno</mat-option>
+            <mat-option value="27"></mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div class="titulo"><strong>Alumno </strong><br /></div>
+        <div class="row">
+          <div class="col" style="width: 200px">
+            Cedula:<b>
+              {{ lista.matricula.inscripcion.alumno.identificacion }}
+              {{ matricula.inscripcion.alumno.identificacion }}</b>
+          </div>
+          <div class="col" style="width: 350px">
+            Nombres:
+            <b>
+              {{ lista.matricula.inscripcion.alumno.apellidoPrimer }}
+              {{ matricula.inscripcion.alumno.apellidoPrimer }}
+              {{ lista.matricula.inscripcion.alumno.apellidoSegundo }}
+              {{ matricula.inscripcion.alumno.apellidoSegundo }}
+              {{ lista.matricula.inscripcion.alumno.nombrePrimer }}
+              {{ matricula.inscripcion.alumno.nombrePrimer }}
+              {{ lista.matricula.inscripcion.alumno.nombreSegundo
+              }}{{ matricula.inscripcion.alumno.nombreSegundo }}
+            </b>
+          </div>
+          <div class="col" style="width: 250px">
+            Fecha de Nacimiento:<b>
+              {{ lista.matricula.inscripcion.alumno.fechaNacimiento }}
+              {{ matricula.inscripcion.alumno.fechaNacimiento }}
+            </b>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col" style="width: 300px">
+            Sexo:<b>
+              {{ lista.matricula.inscripcion.alumno.sexo }}
+              {{ matricula.inscripcion.alumno.sexo }}
+            </b>
+          </div>
+          <div class="col" style="width: 200px">
+            Dirección
+            <b>{{ lista.matricula.inscripcion.alumno.direccion }}
+              {{ matricula.inscripcion.alumno.direccion }}
+            </b>
+          </div>
+          <div class="col" style="width: 200px">
+            Teléfono:
+            <b>{{ lista.matricula.inscripcion.alumno.telefono }}
+              {{ matricula.inscripcion.alumno.telefono }}
+            </b>
+          </div>
+          <div class="col" style="width: 250px">
+            Ocupación:<b>{{ lista.matricula.inscripcion.alumno.ocupacion }}
+              {{ matricula.inscripcion.alumno.ocupacion }}</b>
+          </div>
+          <div class="col" style="width: 250px">
+            Cargo:
+            <b>{{ lista.matricula.inscripcion.alumno.cargo }}
+              {{ matricula.inscripcion.alumno.cargo }}
+            </b>
+          </div>
+          <br />
+        </div>
+        <br />
+        <div class="titulo"><strong>Materia</strong><br /></div>
+
+        <div class="row">
+          <div class="col" style="width: 300px">
+            Curso:<b>{{ lista.matricula.inscripcion.curso.titulo }}
+              {{ matricula.inscripcion.curso.titulo }}</b>
+          </div>
+          <div class="col" style="width: 250px">
+            Duración:<b>
+              {{ lista.matricula.inscripcion.curso.catalogo.duracion
+              }}{{ matricula.inscripcion.curso.catalogo.duracion }}</b>
+          </div>
+          <div class="col" style="width: 250px">
+            Seminarios:<b>{{ lista.matricula.inscripcion.curso.seminarios }}
+              {{ matricula.inscripcion.curso.seminarios }}</b>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            Descripción:<b>
+              {{ lista.matricula.inscripcion.curso.catalogo.descripcion }}
+              {{ matricula.inscripcion.curso.catalogo.descripcion }}</b>
+          </div>
+        </div>
+        <br>
+        <mat-label><strong>Horarios</strong><br /></mat-label>
+
+      <div class="row">
+        <div class="col"> Días:
+          <span *ngFor="let dias of lista.matricula.inscripcion.curso.dias">
+            <b>{{ dias.descripcion }}</b></span>
+          <span *ngFor="let dias of matricula.inscripcion.curso.dias">
+            <b>{{ dias.descripcion }}</b></span>
+        </div>
+        <div class="col"> Hora Inicio: <b>{{ lista.matricula.inscripcion.curso.horaInicio }}
+            {{ matricula.inscripcion.curso.horaInicio }}</b>
+       Hora Fin:<b>{{
+            lista.matricula.inscripcion.curso.horaFin
+            }}
+            {{ matricula.inscripcion.curso.horaFin }}</b></div></div>
+        <br>
+
+
+
+        <mat-label><strong>Pensiones</strong><br /></mat-label>
+        <div class="row">
+          <div class="col">
+          Valor Matricula:<b>
+          {{ lista.matricula.inscripcion.curso.valorMatricula }}
+          {{ matricula.inscripcion.curso.valorMatricula }}</b>
+       </div>
+       <div class="col">   Valor Curso:<b>{{ lista.matricula.inscripcion.curso.valorCurso }}
+          {{ matricula.inscripcion.curso.valorCurso }}</b></div>
+</div>
+
+        <mat-form-field appearance="legacy">
+          <mat-label>Forma de Pago</mat-label>
+          <mat-select formControlName="formaPago" [(ngModel)]="lista.formaPago">
+            <mat-option value="mensual">Mensual</mat-option>
+            <mat-option value="Semanal">Semanal</mat-option>
+            <mat-option value="Semanal">De Contado</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy">
+          <mat-label>Estado</mat-label>
+          <mat-select formControlName="estado" [(ngModel)]="lista.estado">
+            <mat-option value="Activo">Activo</mat-option>
+            <mat-option value="En pausa">En pausa</mat-option>
+            <mat-option value="Cancelado">Cancelado</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field style="width:400px ;" appearance="legacy">
+          <mat-label> Observacion</mat-label>
+          <input matInput autocomplete="off" formControlName="observacion" [(ngModel)]="lista.observacion" />
+        </mat-form-field>
+
+        <mat-card-actions>
+
+        <div style="text-align: center">
+          <button mat-raised-button color="primary" routerLink="/dashboard/listar-matriculas"
+            style="margin-right: 20px">
+            <mat-icon>reply</mat-icon>
+            Volver
+          </button>
+          <button type="submit" [disabled]="form.invalid" mat-raised-button color="accent" (click)="agregar()">
+            <mat-icon>save</mat-icon>
+            Guardar
+          </button>
+</div>
+        </mat-card-actions>
+      </mat-card-content>
+    </div>
+  </form>
+</mat-card>

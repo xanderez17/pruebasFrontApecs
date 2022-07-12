@@ -1,0 +1,21 @@
+<app-encabezado></app-encabezado>
+
+<div class="container">
+  <div class="row">
+    <h1>Cursos y Seminarios</h1>
+    <div class="class=items  col-md-4 col-xs-12 " *ngFor="let c of lista">
+      <img class="card-img-top " src="{{c.catalogo.img }}" alt="img">
+      <div class="card-body">
+        <h2 class="card-title">{{c.catalogo.nombre}}</h2>
+        <h4 class="card-text"> {{c.catalogo.descripcion}}</h4>
+        <p><strong>Inicia: </strong>{{c.fechaInscripcion}}</p>
+
+        <a href="#" class="btn btn-info ">Detalles</a>
+        <a href="#" class="btn btn-success" [routerLink]="['/inscripcion',c.idCurso]">Inscribirse</a>
+      </div>
+    </div>
+  </div>
+  </div>
+<app-pie-pagina></app-pie-pagina>
+
+

@@ -1,0 +1,35 @@
+<mat-card class="container">
+  <div class="card-header">
+    <mat-card-header>
+      <mat-card-title>Lista de Cursos</mat-card-title>
+    </mat-card-header>
+  </div>
+    <br>
+    <mat-divider></mat-divider>
+    <div class="container" *ngIf="cargar==false">
+      <div class="row ">
+        <div class="col" *ngFor="let x of lista">
+
+          <img class="card-img-top " src="{{x.catalogo.img }}" alt="img">
+          <div class="card-body">
+            <p class="card-title">{{x.catalogo.nombre}}</p>
+
+            <mat-card-actions style="text-align: center">
+
+              <a  mat-button color="primary" [routerLink]="['/dashboard/crear-asistencia', x.idCurso]" data-toggle="tooltip" matTooltip="Control Asistensia">
+                <mat-icon aria-hidden="true" aria-label="Example home icon">free_cancellation</mat-icon>
+              </a>
+              <a  mat-button color="primary" [routerLink]="['/dashboard/crear-calificacion', x.idCurso]" data-toggle="tooltip" matTooltip="Control Califiaciones">
+                <mat-icon aria-hidden="true" aria-label="Example home icon">spellcheck</mat-icon>
+              </a>
+
+
+            </mat-card-actions>
+          </div>
+        </div>
+      </div></div>
+  </mat-card>
+
+<ng-container *ngIf="cargar">
+  <span class="loader"></span>
+</ng-container>

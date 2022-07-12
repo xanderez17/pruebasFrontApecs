@@ -1,0 +1,175 @@
+<mat-card class="container">
+
+  <mat-card-header>
+    <mat-card-title>Formulario Contrato</mat-card-title>
+  </mat-card-header>
+
+  <div class="card-body">
+    <mat-card-content>
+      <div class="row">
+      <div class="col" >   <mat-label><strong>Contrato Nº <b>{{ lista.idContrato }}</b></strong></mat-label>
+      </div> <div class="col" >
+        Fecha Contrato <b>{{ lista.fechaContrato | date: "dd/MM/yyyy" }}</b>
+      </div>
+      <br>
+      <br>
+</div>
+
+
+
+
+
+    <div class="row">
+      <div class="col">Representente:<br>Cedula<b>{{lista.representante.identificacion}}</b></div>
+      <div class="col">Nombreas:<b>{{ lista.representante.apellidoPrimer }} {{ lista.representante.apellidoSegundo }}   {{ lista.representante.nombrePrimer }}        {{ lista.representante.nombreSegundo }}
+
+     </b></div></div>
+     <br>
+      <div class="titulo"><strong>Alumno </strong><br /></div>
+      <div class="row">
+        <div class="col" style="width: 200px">
+          Cedula:<b>
+            {{ lista.matricula.inscripcion.alumno.identificacion }}
+          </b>
+        </div>
+        <div class="col" style="width: 350px">
+          Nombres:
+          <b>
+            {{ lista.matricula.inscripcion.alumno.apellidoPrimer }}
+
+            {{ lista.matricula.inscripcion.alumno.apellidoSegundo }}
+
+            {{ lista.matricula.inscripcion.alumno.nombrePrimer }}
+
+            {{ lista.matricula.inscripcion.alumno.nombreSegundo
+            }}
+          </b>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" style="width: 250px">
+          Fecha de Nacimiento:<b>
+            {{ lista.matricula.inscripcion.alumno.fechaNacimiento }}
+
+          </b>
+        </div>
+
+        <div class="col" style="width: 300px">
+          Sexo:<b>
+            {{ lista.matricula.inscripcion.alumno.sexo }}
+
+          </b>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" style="width: 200px">
+          Dirección
+          <b>{{ lista.matricula.inscripcion.alumno.direccion }}
+
+          </b>
+
+        </div>
+        <div class="col" style="width: 200px">
+          Teléfono:
+          <b>{{ lista.matricula.inscripcion.alumno.telefono }}
+
+          </b>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" style="width: 250px">
+          Ocupación:<b>{{ lista.matricula.inscripcion.alumno.ocupacion }}
+          </b>
+        </div>
+        <div class="col" style="width: 250px">
+          Cargo:
+          <b>{{ lista.matricula.inscripcion.alumno.cargo }}
+
+          </b>
+        </div>
+        <br />
+      </div>
+      <br />
+      <div class="titulo"><strong>Materia</strong><br /></div>
+
+      <div class="row">
+        <div class="col" style="width: 300px">
+          Curso:<b>{{ lista.matricula.inscripcion.curso.titulo }}
+          </b>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" style="width: 250px">
+          Duración:<b>
+            {{ lista.matricula.inscripcion.curso.catalogo.duracion
+            }}</b>
+        </div>
+        <div class="col" style="width: 250px">
+          Seminarios:<b>{{ lista.matricula.inscripcion.curso.seminarios }}
+          </b>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          Descripción:<b>
+            {{ lista.matricula.inscripcion.curso.catalogo.descripcion }}
+
+          </b>
+        </div>
+        <br>
+        <br>
+        <mat-label><strong>Horarios</strong><br /></mat-label>
+
+        <div class="row">
+          <div class="col"> Días:
+            <span *ngFor="let dias of lista.matricula.inscripcion.curso.dias">
+              <b>{{ dias.descripcion }}</b></span>
+
+          </div>
+          <div class="col"> Hora Inicio: <b>{{ lista.matricula.inscripcion.curso.horaInicio }}
+            </b>
+            Hora Fin:<b>{{
+              lista.matricula.inscripcion.curso.horaFin
+              }}
+            </b></div>
+        </div>
+        <br>
+
+
+</div>
+        <mat-label><strong>Pensiones</strong><br /></mat-label>
+        <div class="row">
+          <div class="col">
+            Valor Matricula:<b>
+              {{ lista.matricula.inscripcion.curso.valorMatricula }}
+            </b>
+          </div>
+          <div class="col"> Valor Curso:<b>{{ lista.matricula.inscripcion.curso.valorCurso }}
+            </b></div>
+        </div>
+        <div class="row">
+          <div class="col">
+            Forma de Pago: <b>{{lista.formaPago}}
+            </b>
+          Estado: <b>{{lista.estado}}
+            </b></div>
+          <div class="col">Observacion: <b>{{lista.observacion}} </b></div>
+        </div>
+        <mat-card-actions>
+          <button mat-raised-button color="primary"  [mat-dialog-close]="true"
+            style="margin-right: 20px">
+            <mat-icon>reply</mat-icon>
+            Volver
+          </button>
+
+          <button type="submit" mat-raised-button color="accent" (click)="exportPdf()">
+            <mat-icon>print</mat-icon>
+            Imprimir
+          </button>
+
+        </mat-card-actions>
+
+    </mat-card-content>
+  </div>
+</mat-card>
